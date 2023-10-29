@@ -1,4 +1,4 @@
-package com.project.scn.service;
+package com.project.scn.service.impl;
 
 import com.project.scn.DTO.AlunoDTO;
 import com.project.scn.repository.AlunoRepository;
@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AlunoService {
+public class AlunoServiceImpl {
 
     AlunoRepository alunoRepository;
 

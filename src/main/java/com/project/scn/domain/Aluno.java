@@ -1,78 +1,73 @@
 package com.project.scn.domain;
 
-import com.project.scn.DTO.AlunoDTO;
+import java.io.Serializable;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 
 @Entity
-public class Aluno {
+@Table(name = "taluno")
+public class Aluno implements Serializable {
+	private static final long serialVersionUID = 1L;
 
-    @Id
-    private Long codigo;
-    private String nome;
-    private String usuario;
-    private String senha;
-    @OneToOne
-    private Curso curso;
-    @OneToOne
-    private Semestre semestre;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "codaln")
+	private Long codigo;
+	@Column(name = "nomealn")
+	private String nome;
+	@Column(name = "usraln")
+	private String usuario;
+	@Column(name = "senhaaln")
+	private String senha;
+	@OneToOne
+	@JoinColumn(name = "codcs", referencedColumnName = "codcs")
+	private Curso curso;
 
-    public Aluno(AlunoDTO alunoDTO) {
-        this.codigo = alunoDTO.getCodigo();
-        this.usuario = alunoDTO.getUsuario();
-        this.senha = alunoDTO.getSenha();
-    }
+	public Long getCodigo() {
+		return codigo;
+	}
 
-    public Aluno() {
+	public void setCodigo(Long codigo) {
+		this.codigo = codigo;
+	}
 
-    }
+	public String getNome() {
+		return nome;
+	}
 
-    public Long getCodigo() {
-        return codigo;
-    }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-    public void setCodigo(Long codigo) {
-        this.codigo = codigo;
-    }
+	public String getUsuario() {
+		return usuario;
+	}
 
-    public String getNome() {
-        return nome;
-    }
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+	public String getSenha() {
+		return senha;
+	}
 
-    public String getUsuario() {
-        return usuario;
-    }
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
 
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
+	public Curso getCurso() {
+		return curso;
+	}
 
-    public String getSenha() {
-        return senha;
-    }
+	public void setCurso(Curso curso) {
+		this.curso = curso;
+	}
 
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public Curso getCurso() {
-        return curso;
-    }
-
-    public void setCurso(Curso curso) {
-        this.curso = curso;
-    }
-
-    public Semestre getSemestre() {
-        return semestre;
-    }
-
-    public void setSemestre(Semestre semestre) {
-        this.semestre = semestre;
-    }
 }
