@@ -1,7 +1,8 @@
 package com.project.scn.controller;
 
 import com.project.scn.DTO.AlunoDTO;
-import com.project.scn.service.AlunoService;
+import com.project.scn.service.impl.AlunoServiceImpl;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AlunoController {
 
     @Autowired
-    AlunoService alunoService;
+    AlunoServiceImpl alunoService;
 
     @PostMapping("efetuarLogin")
     public ResponseEntity<String> efetuarLogin(@RequestBody AlunoDTO alunoDTO) throws Exception {
