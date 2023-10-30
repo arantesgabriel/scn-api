@@ -23,7 +23,7 @@ public class Curso implements Serializable {
 	@Column(name = "nomecs")
 	private String nome;
 	@Column(name = "duracaocs")
-	private int duracao;
+	private Integer duracao;
 	@ManyToOne
 	@JoinColumn(name = "codsm", referencedColumnName = "codsm")
 	private Semestre semestre;
@@ -44,11 +44,11 @@ public class Curso implements Serializable {
 		this.nome = nome;
 	}
 
-	public int getDuracao() {
+	public Integer getDuracao() {
 		return duracao;
 	}
 
-	public void setDuracao(int duracao) {
+	public void setDuracao(Integer duracao) {
 		this.duracao = duracao;
 	}
 

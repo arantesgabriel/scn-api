@@ -14,18 +14,16 @@ import com.project.scn.service.CursoService;
 @RestController
 @CrossOrigin("*")
 public class CursoController {
-	
+
 	@Autowired
 	CursoService cursoService;
-	
+
 	@PostMapping("cadastroCurso")
 	public ResponseEntity<String> CadastrarCurso(@RequestBody CursoDTO cursoDTO) {
-		try {
-			cursoService.CadastrarCurso(cursoDTO);			
-		} catch (NullPointerException e) {
+		if (cursoDTO.getNome() == null || cursoDTO.getDuracao() == null) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("É preciso informar todos os campos");
 		}
-		return ResponseEntity.ok("Curso cadastrado com sucesso");
+		return ResponseEntity.ok(cursoService.CadastrarCurso(cursoDTO));
 	}
-	
+
 }
