@@ -1,5 +1,7 @@
 package com.project.scn.service.impl;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,11 +20,16 @@ public class CursoServiceImpl implements CursoService {
 	CursoRepository cursoRepository;
 
 	@Override
-	public String CadastrarCurso(CursoDTO cursoDTO) throws NullPointerException {
+	public String CadastrarCurso(CursoDTO cursoDTO) {
 		Curso curso = new Curso();
 		cursoDTO.setNome(cursoDTO.getNome().toUpperCase());
 		cursoMapper.DTOParaCurso(cursoDTO, curso);
 		cursoRepository.save(curso);
 		return "Curso cadastrado com sucesso";
+	}
+
+	@Override
+	public Optional<Curso> BuscarCurso(Long codigo) {
+		return cursoRepository.BucarCurso(codigo);
 	}
 }
