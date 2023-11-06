@@ -1,9 +1,14 @@
 package com.project.scn.service;
 
+import java.util.Optional;
+
 import com.project.scn.DTO.CursoDTO;
+import com.project.scn.domain.Curso;
 
 public interface CursoService {
 
-	void CadastrarCurso(CursoDTO cursoDTO) throws NullPointerException;
+	String CadastrarCurso(CursoDTO cursoDTO);
+
+	Optional<Curso> BuscarCurso(Long codigo);
 
 }
