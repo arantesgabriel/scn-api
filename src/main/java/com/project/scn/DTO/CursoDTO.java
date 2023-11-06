@@ -2,17 +2,8 @@ package com.project.scn.DTO;
 
 public class CursoDTO {
 
-	private Long codigo;
 	private String nome;
-	private int duracao;
-
-	public Long getCodigo() {
-		return codigo;
-	}
-
-	public void setCodigo(Long codigo) {
-		this.codigo = codigo;
-	}
+	private Integer duracao;
 
 	public String getNome() {
 		return nome;
@@ -22,11 +13,11 @@ public class CursoDTO {
 		this.nome = nome;
 	}
 
-	public int getDuracao() {
+	public Integer getDuracao() {
 		return duracao;
 	}
 
-	public void setDuracao(int duracao) {
+	public void setDuracao(Integer duracao) {
 		this.duracao = duracao;
 	}
 
