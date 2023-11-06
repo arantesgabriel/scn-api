@@ -1,17 +1,22 @@
 package com.project.scn.service.impl;
 
 import com.project.scn.DTO.AlunoDTO;
+import com.project.scn.domain.Aluno;
 import com.project.scn.repository.AlunoRepository;
+import com.project.scn.service.AlunoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
-public class AlunoServiceImpl {
+import java.util.List;
 
+@Service
+public class AlunoServiceImpl implements AlunoService {
+
+    @Autowired
     AlunoRepository alunoRepository;
 
-    public String validarLogin(AlunoDTO alunoDTO) throws Exception {
-
+    @Override
+    public String efetuarLogin(AlunoDTO alunoDTO) throws Exception {
         String usuario = alunoDTO.getUsuario();
         String senha = alunoDTO.getSenha();
 
@@ -24,4 +29,12 @@ public class AlunoServiceImpl {
         }
     }
 
+    public List<Aluno> listarAlunos() {
+        List<Aluno> listaAlunos = alunoRepository.findAll();
+        return listaAlunos;
+    }
+
+    public void cadastrarAluno(Aluno aluno) {
+        alunoRepository.save(aluno);
+    }
 }
