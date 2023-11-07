@@ -13,7 +13,7 @@ CREATE TABLE scndb.tcurso
 (
     codcs     INT NOT NULL AUTO_INCREMENT,
 	nomecs    VARCHAR(255),
-	duracaocs NUMERIC,
+	duracaocs NUMERIC NOT NULL,
     codsm     INT,
     PRIMARY KEY (codcs),
     FOREIGN KEY (codsm) REFERENCES scndb.tsemestre (codsm)

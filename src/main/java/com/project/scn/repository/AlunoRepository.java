@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AlunoRepository extends JpaRepository<Aluno, Long> {
 
-    boolean existsByUsuarioAndSenha(String usuario, String senha) throws Exception;
+    boolean existsByUsuario(String usuario) throws Exception;
+    Aluno findAlunoByUsuario(String usuario) throws Exception;
 
 }
