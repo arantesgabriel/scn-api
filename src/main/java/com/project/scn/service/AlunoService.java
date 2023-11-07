@@ -10,6 +10,9 @@ public interface AlunoService {
     String efetuarLogin(AlunoDTO alunoDTO) throws Exception;
 
     List<Aluno> listarAlunos() throws Exception;
+
     void cadastrarAluno(Aluno aluno) throws Exception;
+
+    String deletarAluno(Long codigo) throws Exception;
 
 }
