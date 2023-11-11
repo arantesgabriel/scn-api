@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AlunoServiceImpl implements AlunoService {
@@ -48,11 +49,19 @@ public class AlunoServiceImpl implements AlunoService {
         }
     }
 
-    public void cadastrarAluno(Aluno aluno) {
-        String senha = aluno.getSenha();
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String senhaCriptografada = passwordEncoder.encode(senha);
-        aluno.setSenha(senhaCriptografada);
-        alunoRepository.save(aluno);
+    public String cadastrarAluno(Aluno aluno) throws Exception {
+
+        if (aluno.getNome().isEmpty() || aluno.getUsuario().isEmpty() || aluno.getSenha().isEmpty()) {
+            throw new Exception("Preencha todos os campos.");
+        } else if (aluno.getNome() == null || aluno.getUsuario() == null || aluno.getSenha() == null) {
+            throw new Exception("Os campos estão nulos. Ajuste para prosseguir.");
+        } else {
+            String senha = aluno.getSenha();
+            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+            String senhaCriptografada = passwordEncoder.encode(senha);
+            aluno.setSenha(senhaCriptografada);
+            alunoRepository.save(aluno);
+            return ("Usuário cadastrado com sucesso!");
+        }
     }
 }

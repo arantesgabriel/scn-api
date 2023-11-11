@@ -6,11 +6,11 @@ import com.project.scn.service.AlunoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class AlunoController {
@@ -19,7 +19,7 @@ public class AlunoController {
     AlunoService alunoService;
 
     @GetMapping("listarAlunos")
-    public List buscarAlunos() throws Exception {
+    public List<Aluno> buscarAlunos() throws Exception {
         return alunoService.listarAlunos();
     }
 
@@ -42,8 +42,12 @@ public class AlunoController {
     }
 
     @PostMapping("cadastroAluno")
-    public void efetuarCadastro(@RequestBody Aluno aluno) throws Exception {
-        alunoService.cadastrarAluno(aluno);
+    public ResponseEntity efetuarCadastro(@RequestBody Aluno aluno) {
+        try {
+            return ResponseEntity.ok(alunoService.cadastrarAluno(aluno));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(e.getMessage());
+        }
     }
 
 }
