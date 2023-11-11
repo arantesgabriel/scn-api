@@ -48,7 +48,8 @@ CREATE TABLE scndb.ttrabalho
 (
     codtrb  INT AUTO_INCREMENT,
     nometrb VARCHAR(255),
-    notatrb DECIMAL NOT NULL,
+    notatottrb DECIMAL NOT NULL,
+    notafintrb DECIMAL NOT NULL,
     datent  DATE,
     PRIMARY KEY (codtrb)
 );
@@ -56,7 +57,8 @@ CREATE TABLE scndb.ttrabalho
 CREATE TABLE scndb.tavaliacao (
     codavl INT AUTO_INCREMENT,
     nomeavl VARCHAR(255),
-    notaavl DECIMAL NOT NULL,
+    notatotavl DECIMAL NOT NULL,
+    notafinavl DECIMAL NOT NULL,
 	datent  DATE,
     PRIMARY KEY (codavl)
 );
