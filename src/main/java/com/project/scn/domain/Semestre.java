@@ -15,60 +15,40 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "tsemestre")
 public class Semestre implements Serializable {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "codsm")
-	private Long codigo;
-	@Column(name = "nomedsm")
-	private String nome;
-	@Column(name = "mediasm")
-	private Float mediaTotal;
-	@Column(name = "statusaprvsm")
-	private Boolean statusAprovacao;
-	@ManyToOne
-	@JoinColumn(name = "coddcp", referencedColumnName = "coddcp")
-	private Disciplina disciplina;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "codsm")
+    private Long codigo;
+    @Column(name = "numpr")
+    private Integer numeroPeriodo;
+    @Column(name = "mediasm")
+    private Float mediaFinal;
 
-	public Long getCodigo() {
-		return codigo;
-	}
+    public Long getCodigo() {
+        return codigo;
+    }
 
-	public void setCodigo(Long codigo) {
-		this.codigo = codigo;
-	}
+    public void setCodigo(Long codigo) {
+        this.codigo = codigo;
+    }
 
-	public String getNome() {
-		return nome;
-	}
+    public Integer setNumeroPeriodo() {
+        return numeroPeriodo;
+    }
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    public void setNumeroPeriodo(Integer numeroPeriodo) {
+        this.numeroPeriodo = numeroPeriodo;
+    }
 
-	public Float getMediaTotal() {
-		return mediaTotal;
-	}
+    public Float getMediaTotal() {
+        return mediaFinal;
+    }
 
-	public void setMediaTotal(Float mediaTotal) {
-		this.mediaTotal = mediaTotal;
-	}
+    public void setMediaTotal(Float mediaFinal) {
+        this.mediaFinal = mediaFinal;
+    }
 
-	public Boolean getStatusAprovacao() {
-		return statusAprovacao;
-	}
-
-	public void setStatusAprovacao(Boolean statusAprovacao) {
-		this.statusAprovacao = statusAprovacao;
-	}
-
-	public Disciplina getDisciplina() {
-		return disciplina;
-	}
-
-	public void setDisciplina(Disciplina disciplina) {
-		this.disciplina = disciplina;
-	}
 
 }

@@ -2,15 +2,7 @@ package com.project.scn.domain;
 
 import java.io.Serializable;
 
-import com.project.scn.DTO.AlunoDTO;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "taluno")
@@ -27,10 +19,12 @@ public class Aluno implements Serializable {
     private String usuario;
     @Column(name = "senhaaln")
     private String senha;
-    @OneToOne
-    @JoinColumn(name = "codcs", referencedColumnName = "codcs")
-    private Curso curso;
-
+    @ManyToOne
+    @JoinColumn(name = "codsm", referencedColumnName = "codsm")
+    private Semestre semestre;
+    @ManyToOne
+    @JoinColumn(name = "coddcp", referencedColumnName = "coddcp")
+    private Disciplina disciplina;
 
     public Aluno(Aluno aluno) {
     }
@@ -71,12 +65,19 @@ public class Aluno implements Serializable {
         this.senha = senha;
     }
 
-    public Curso getCurso() {
-        return curso;
+    public Semestre getSemestre() {
+        return semestre;
     }
 
-    public void setCurso(Curso curso) {
-        this.curso = curso;
+    public void setSemestre(Semestre semestre) {
+        this.semestre = semestre;
     }
 
+    public Disciplina getDisciplina() {
+        return disciplina;
+    }
+
+    public void setDisciplina(Disciplina disciplina) {
+        this.disciplina = disciplina;
+    }
 }
