@@ -41,8 +41,8 @@ public class AlunoServiceImpl implements AlunoService {
     }
 
     public String deletarAluno(Long codigo) throws Exception {
-        if (alunoRepository.findById(codigo).isEmpty()) {
-            throw new Exception("Não existe aluno com o código informado.");
+        if (alunoRepository.findById(codigo).isEmpty() || alunoRepository.findById(codigo) == null) {
+            throw new Exception("Não existe um aluno com o código informado.");
         } else {
             alunoRepository.deleteById(codigo);
             return "Aluno deletado.";
@@ -51,10 +51,14 @@ public class AlunoServiceImpl implements AlunoService {
 
     public String cadastrarAluno(Aluno aluno) throws Exception {
 
-        if (aluno.getNome().isEmpty() || aluno.getUsuario().isEmpty() || aluno.getSenha().isEmpty()) {
-            throw new Exception("Preencha todos os campos.");
-        } else if (aluno.getNome() == null || aluno.getUsuario() == null || aluno.getSenha() == null) {
-            throw new Exception("Os campos estão nulos. Ajuste para prosseguir.");
+        if (aluno.getNome().isEmpty() || aluno.getNome() == null) {
+            throw new Exception("Preencha o campo 'nome' corretamente.");
+        }
+        if (aluno.getUsuario().isEmpty() || aluno.getUsuario() == null) {
+            throw new Exception("Preencha o campo 'usuário' corretamente.");
+        }
+        if (aluno.getSenha().isEmpty() || aluno.getSenha() == null) {
+            throw new Exception("Preencha o campo 'senha' corretamente.");
         } else {
             String senha = aluno.getSenha();
             BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();

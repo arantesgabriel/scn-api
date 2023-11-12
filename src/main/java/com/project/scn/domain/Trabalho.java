@@ -26,7 +26,7 @@ public class Trabalho implements Serializable {
     private Float notaTotal;
     @Column(name = "notafintrb")
     private Float notaFinal;
-    @Column(name = "datenttrb")
+    @Column(name = "datrb")
     @JsonFormat(pattern = "dd/MM/yyyy", timezone = "GMT")
     private Date dataEntrega;
 
