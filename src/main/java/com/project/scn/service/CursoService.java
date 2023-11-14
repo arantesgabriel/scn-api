@@ -1,14 +1,17 @@
 package com.project.scn.service;
 
-import java.util.Optional;
+import java.util.List;
 
-import com.project.scn.DTO.CursoDTO;
 import com.project.scn.domain.Curso;
-
+	
 public interface CursoService {
 
-	String CadastrarCurso(CursoDTO cursoDTO);
-
-	Optional<Curso> BuscarCurso(Long codigo);
-
+	List<Curso> listarCursos();
+	
+	String cadastrarCurso(Curso curso) throws NoSuchFieldException;
+	
+	void validarCamposCurso(Curso curso) throws NoSuchFieldException;
+	
+	String adicionarAluno(Curso curso, Long codigo) throws NoSuchFieldException;
+	
 }

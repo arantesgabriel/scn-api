@@ -1,19 +1,24 @@
 package com.project.scn.service;
 
-import com.project.scn.DTO.AlunoDTO;
-import com.project.scn.domain.Aluno;
-
+import java.nio.file.AccessDeniedException;
 import java.util.List;
 import java.util.Optional;
 
+import com.project.scn.DTO.AlunoDTO;
+import com.project.scn.domain.Aluno;
+
 public interface AlunoService {
 
-    String efetuarLogin(AlunoDTO alunoDTO) throws Exception;
+	List<Aluno> listarAlunos();
 
-    List<Aluno> listarAlunos() throws Exception;
+	String cadastrarAluno(Aluno aluno) throws NoSuchFieldException;
 
-    String cadastrarAluno(Aluno aluno) throws Exception;
+	String efetuarLogin(AlunoDTO alunoDTO) throws AccessDeniedException, NoSuchFieldException;
 
-    String deletarAluno(Long codigo) throws Exception;
+	String deletarAluno(Long codigo) throws NoSuchFieldException;
+
+	void validarCamposAluno(Aluno aluno) throws NoSuchFieldException;
+
+	Optional<Aluno> buscarAlunoCodigo(Long codigo);
 
 }

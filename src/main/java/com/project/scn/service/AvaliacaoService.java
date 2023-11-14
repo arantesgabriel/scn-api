@@ -1,14 +1,15 @@
 package com.project.scn.service;
 
-import com.project.scn.domain.Avaliacao;
-import com.project.scn.domain.Trabalho;
-
 import java.util.List;
+
+import com.project.scn.domain.Avaliacao;
 
 public interface AvaliacaoService {
 
-    String cadastrarAvaliacao(Avaliacao avaliacao) throws Exception;
+	List<Avaliacao> listarAvaliacoes();
 
-    List<Avaliacao> listarAvaliacoes();
+	String cadastrarAvaliacao(Avaliacao avaliacao) throws NoSuchFieldException;
+
+	void validarCamposAvaliacao(Avaliacao avaliacao) throws NoSuchFieldException;
 
 }
