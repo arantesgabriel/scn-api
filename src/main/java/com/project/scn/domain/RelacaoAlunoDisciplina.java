@@ -1,25 +1,24 @@
 package com.project.scn.domain;
 
-import java.io.Serializable;
-
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+
 @Entity
-@Table(name = "tcurso")
-public class Curso implements Serializable {
+@Table(name = "trelacaoalndcp")
+public class RelacaoAlunoDisciplina implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "codcs")
+    @Column(name = "codrel")
     private Long codigo;
-    @Column(name = "nomecs")
-    private String nome;
-    @Column(name = "durccs")
-    private Integer duracao;
     @ManyToOne
     @JoinColumn(name = "codaln", referencedColumnName = "codaln")
     private Aluno aluno;
+    @ManyToOne
+    @JoinColumn(name = "coddcp", referencedColumnName = "coddcp")
+    private Disciplina disciplina;
 
     public Long getCodigo() {
         return codigo;
@@ -29,27 +28,19 @@ public class Curso implements Serializable {
         this.codigo = codigo;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public Integer getDuracao() {
-        return duracao;
-    }
-
-    public void setDuracao(Integer duracao) {
-        this.duracao = duracao;
-    }
-
     public Aluno getAluno() {
         return aluno;
     }
 
     public void setAluno(Aluno aluno) {
         this.aluno = aluno;
+    }
+
+    public Disciplina getDisciplina() {
+        return disciplina;
+    }
+
+    public void setDisciplina(Disciplina disciplina) {
+        this.disciplina = disciplina;
     }
 }

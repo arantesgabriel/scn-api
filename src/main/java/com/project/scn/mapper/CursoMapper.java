@@ -16,7 +16,6 @@ public interface CursoMapper {
 	CursoMapper INSTANCE = Mappers.getMapper( CursoMapper.class );
 	
     @BeanMapping(nullValuePropertyMappingStrategy  = NullValuePropertyMappingStrategy.IGNORE)
-    @Mapping(target = "semestre", ignore = true)
     @Mapping(target = "codigo", ignore = true)
     void DTOParaCurso(CursoDTO dto, @MappingTarget Curso entity);
 }
