@@ -9,6 +9,18 @@ CREATE TABLE scndb.tcurso
         REFERENCES scndb.taluno (codaln)
 );
 
+CREATE TABLE scndb.trelacaoalndcp
+(
+    codrel INT NOT NULL AUTO_INCREMENT,
+    codaln INT,
+    coddcp INT,
+    PRIMARY KEY (codrel),
+    FOREIGN KEY (codaln)
+        REFERENCES scndb.taluno (codaln),
+    FOREIGN KEY (coddcp)
+        REFERENCES scndb.tdisciplina (coddcp)
+);
+
 CREATE TABLE scndb.taluno
 (
     codaln   INT NOT NULL AUTO_INCREMENT,
@@ -16,10 +28,17 @@ CREATE TABLE scndb.taluno
     usraln   VARCHAR(255),
     senhaaln VARCHAR(255),
     codsm    INT,
-    coddcp   INT,
     PRIMARY KEY (codaln),
     FOREIGN KEY (codsm)
-        REFERENCES scndb.tsemestre (codsm),
+        REFERENCES scndb.tsemestre (codsm)
+);
+
+CREATE TABLE scndb.tgrade
+(
+    codgrd INT AUTO_INCREMENT,
+    numpr  VARCHAR(255),
+    coddcp INT,
+    PRIMARY KEY (codgrd),
     FOREIGN KEY (coddcp)
         REFERENCES scndb.tdisciplina (coddcp)
 );
@@ -47,19 +66,6 @@ CREATE TABLE scndb.tdisciplina
         REFERENCES scndb.ttrabalho (codtrb),
     FOREIGN KEY (codavl)
         REFERENCES scndb.tavaliacao (codavl)
-);
-
-CREATE TABLE scndb.tgrade
-(
-    codgrd INT AUTO_INCREMENT,
-    numpr  VARCHAR(255),
-    codcs  INT,
-    coddcp INT,
-    PRIMARY KEY (codgrd),
-    FOREIGN KEY (codcs)
-        REFERENCES scndb.tdisciplina (codcs),
-    FOREIGN KEY (coddcp)
-        REFERENCES scndb.tdisciplina (coddcp)
 );
 
 CREATE TABLE scndb.ttrabalho

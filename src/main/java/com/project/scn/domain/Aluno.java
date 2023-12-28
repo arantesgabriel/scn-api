@@ -22,9 +22,6 @@ public class Aluno implements Serializable {
     @ManyToOne
     @JoinColumn(name = "codsm", referencedColumnName = "codsm")
     private Semestre semestre;
-    @ManyToOne
-    @JoinColumn(name = "coddcp", referencedColumnName = "coddcp")
-    private Disciplina disciplina;
 
     public Aluno(Aluno aluno) {
     }
@@ -73,11 +70,4 @@ public class Aluno implements Serializable {
         this.semestre = semestre;
     }
 
-    public Disciplina getDisciplina() {
-        return disciplina;
-    }
-
-    public void setDisciplina(Disciplina disciplina) {
-        this.disciplina = disciplina;
-    }
 }
