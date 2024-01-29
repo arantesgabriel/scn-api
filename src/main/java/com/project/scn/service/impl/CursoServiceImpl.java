@@ -20,7 +20,7 @@ public class CursoServiceImpl implements CursoService {
 	CursoRepository cursoRepository;
 
 	@Override
-	public String CadastrarCurso(CursoDTO cursoDTO) {
+	public String cadastrarCurso(CursoDTO cursoDTO) {
 		Curso curso = new Curso();
 		cursoDTO.setNome(cursoDTO.getNome().toUpperCase());
 		cursoMapper.DTOParaCurso(cursoDTO, curso);
@@ -29,7 +29,7 @@ public class CursoServiceImpl implements CursoService {
 	}
 
 	@Override
-	public Optional<Curso> BuscarCurso(Long codigo) {
-		return cursoRepository.BucarCurso(codigo);
+	public Optional<Curso> buscarCurso(Long codigo) {
+		return cursoRepository.buscarCurso(codigo);
 	}
 }

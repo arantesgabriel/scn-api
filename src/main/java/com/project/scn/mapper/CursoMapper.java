@@ -12,10 +12,10 @@ import com.project.scn.domain.Curso;
 
 @Mapper(componentModel = "spring")
 public interface CursoMapper {
-	
-	CursoMapper INSTANCE = Mappers.getMapper( CursoMapper.class );
-	
-    @BeanMapping(nullValuePropertyMappingStrategy  = NullValuePropertyMappingStrategy.IGNORE)
-    @Mapping(target = "codigo", ignore = true)
-    void DTOParaCurso(CursoDTO dto, @MappingTarget Curso entity);
+
+	CursoMapper INSTANCE = Mappers.getMapper(CursoMapper.class);
+
+	@BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+	@Mapping(target = "codigo", ignore = true)
+	void DTOParaCurso(CursoDTO dto, @MappingTarget Curso entity);
 }

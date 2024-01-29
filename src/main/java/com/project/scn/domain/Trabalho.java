@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,60 +15,60 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "ttrabalho")
 public class Trabalho implements Serializable {
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "codtrb")
-    private Long codigo;
-    @Column(name = "nometrb")
-    private String nome;
-    @Column(name = "notatottrb")
-    private Float notaTotal;
-    @Column(name = "notafintrb")
-    private Float notaFinal;
-    @Column(name = "datrb")
-    @JsonFormat(pattern = "dd/MM/yyyy", timezone = "GMT")
-    private Date dataEntrega;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "codtrb")
+	private Long codigo;
+	@Column(name = "nometrb")
+	private String nome;
+	@Column(name = "notatottrb")
+	private Float notaTotal;
+	@Column(name = "notafintrb")
+	private Float notaFinal;
+	@Column(name = "datrb")
+	@JsonFormat(pattern = "dd/MM/yyyy", timezone = "GMT")
+	private Date dataEntrega;
 
-    public Long getCodigo() {
-        return codigo;
-    }
+	public Long getCodigo() {
+		return codigo;
+	}
 
-    public void setCodigo(Long codigo) {
-        this.codigo = codigo;
-    }
+	public void setCodigo(Long codigo) {
+		this.codigo = codigo;
+	}
 
-    public String getNome() {
-        return nome;
-    }
+	public String getNome() {
+		return nome;
+	}
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-    public Float getNotaTotal() {
-        return notaTotal;
-    }
+	public Float getNotaTotal() {
+		return notaTotal;
+	}
 
-    public void setNotaTotal(Float notaTotal) {
-        this.notaTotal = notaTotal;
-    }
+	public void setNotaTotal(Float notaTotal) {
+		this.notaTotal = notaTotal;
+	}
 
-    public Float getNotaFinal() {
-        return notaFinal;
-    }
+	public Float getNotaFinal() {
+		return notaFinal;
+	}
 
-    public void setNotaFinal(Float notaFinal) {
-        this.notaFinal = notaFinal;
-    }
+	public void setNotaFinal(Float notaFinal) {
+		this.notaFinal = notaFinal;
+	}
 
-    public Date getDataEntrega() {
-        return dataEntrega;
-    }
+	public Date getDataEntrega() {
+		return dataEntrega;
+	}
 
-    public void setDataEntrega(Date dataEntrega) {
-        this.dataEntrega = dataEntrega;
-    }
+	public void setDataEntrega(Date dataEntrega) {
+		this.dataEntrega = dataEntrega;
+	}
 
 }

@@ -11,14 +11,9 @@ CREATE TABLE scndb.tcurso
 
 CREATE TABLE scndb.trelacaoalndcp
 (
-    codrel INT NOT NULL AUTO_INCREMENT,
     codaln INT,
     coddcp INT,
-    PRIMARY KEY (codrel),
-    FOREIGN KEY (codaln)
-        REFERENCES scndb.taluno (codaln),
-    FOREIGN KEY (coddcp)
-        REFERENCES scndb.tdisciplina (coddcp)
+    PRIMARY KEY (codaln,coddcp)
 );
 
 CREATE TABLE scndb.taluno

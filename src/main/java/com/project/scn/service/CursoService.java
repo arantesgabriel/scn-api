@@ -7,8 +7,8 @@ import com.project.scn.domain.Curso;
 
 public interface CursoService {
 
-	String CadastrarCurso(CursoDTO cursoDTO);
+	String cadastrarCurso(CursoDTO cursoDTO);
 
-	Optional<Curso> BuscarCurso(Long codigo);
+	Optional<Curso> buscarCurso(Long codigo);
 
 }

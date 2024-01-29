@@ -1,15 +1,13 @@
 package com.project.scn.service;
 
-import com.project.scn.DTO.AlunoDTO;
-import com.project.scn.domain.Aluno;
-import com.project.scn.domain.Trabalho;
-
 import java.util.List;
+
+import com.project.scn.domain.Trabalho;
 
 public interface TrabalhoService {
 
-    String cadastrarTrabalho(Trabalho trabalho) throws Exception;
+	String cadastrarTrabalho(Trabalho trabalho) throws Exception;
 
-    List<Trabalho> listarTrabalhos();
+	List<Trabalho> listarTrabalhos();
 
 }

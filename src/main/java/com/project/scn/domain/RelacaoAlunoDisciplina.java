@@ -1,46 +1,25 @@
 package com.project.scn.domain;
 
-import jakarta.persistence.*;
-
 import java.io.Serializable;
+
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "trelacaoalndcp")
 public class RelacaoAlunoDisciplina implements Serializable {
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "codrel")
-    private Long codigo;
-    @ManyToOne
-    @JoinColumn(name = "codaln", referencedColumnName = "codaln")
-    private Aluno aluno;
-    @ManyToOne
-    @JoinColumn(name = "coddcp", referencedColumnName = "coddcp")
-    private Disciplina disciplina;
+	@EmbeddedId
+	RelacaoAlunoDisciplinaPK pkRelacao;
 
-    public Long getCodigo() {
-        return codigo;
-    }
+	public RelacaoAlunoDisciplinaPK getPkRelacao() {
+		return pkRelacao;
+	}
 
-    public void setCodigo(Long codigo) {
-        this.codigo = codigo;
-    }
+	public void setPkRelacao(RelacaoAlunoDisciplinaPK pkRelacao) {
+		this.pkRelacao = pkRelacao;
+	}
 
-    public Aluno getAluno() {
-        return aluno;
-    }
-
-    public void setAluno(Aluno aluno) {
-        this.aluno = aluno;
-    }
-
-    public Disciplina getDisciplina() {
-        return disciplina;
-    }
-
-    public void setDisciplina(Disciplina disciplina) {
-        this.disciplina = disciplina;
-    }
 }

@@ -7,9 +7,9 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.project.scn.domain.Curso;
 
-public interface CursoRepository extends JpaRepository<Curso, Long>{
-	
+public interface CursoRepository extends JpaRepository<Curso, Long> {
+
 	@Query("SELECT cs FROM Curso cs WHERE :codigo = cs.codigo")
-	Optional<Curso> BucarCurso(Long codigo);
-	
+	Optional<Curso> buscarCurso(Long codigo);
+
 }

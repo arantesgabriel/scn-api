@@ -24,22 +24,21 @@ public class CursoController {
 	CursoService cursoService;
 
 	@GetMapping("buscarCurso/{codigo}")
-	public ResponseEntity<?> BuscarCurso(@PathVariable Long codigo) {
-		Optional<Curso> curso = cursoService.BuscarCurso(codigo);	
+	public ResponseEntity<?> buscarCurso(@PathVariable Long codigo) {
+		Optional<Curso> curso = cursoService.buscarCurso(codigo);
 		if (curso.isEmpty()) {
 			return ResponseEntity.ok("Nenhum curso encontrado");
 		} else {
 			return ResponseEntity.ok(curso);
 		}
-
 	}
 
-	@PostMapping("cadastroCurso")
-	public ResponseEntity<String> CadastrarCurso(@RequestBody CursoDTO cursoDTO) {
-		if (cursoDTO.getNome().trim() == null || cursoDTO.getDuracao() == null) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("É preciso informar todos os campos");
-		}
-		return ResponseEntity.ok(cursoService.CadastrarCurso(cursoDTO));
-	}
+//	@PostMapping("cadastroCurso")
+//	public ResponseEntity<String> cadastrarCurso(@RequestBody CursoDTO cursoDTO) {
+//		if (cursoDTO.getNome().trim() == null || cursoDTO.getDuracao() == null) {
+//			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("É preciso informar todos os campos");
+//		}
+//		return ResponseEntity.ok(cursoService.cadastrarCurso(cursoDTO));
+//	}
 
 }
