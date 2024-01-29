@@ -1,6 +1,7 @@
 package com.project.scn.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import jakarta.persistence.*;
 
@@ -19,9 +20,11 @@ public class Aluno implements Serializable {
     private String usuario;
     @Column(name = "senhaaln")
     private String senha;
-    @ManyToOne
-    @JoinColumn(name = "codsm", referencedColumnName = "codsm")
-    private Semestre semestre;
+    @OneToOne
+    @JoinColumn(name = "codcra", referencedColumnName = "codcra")
+    private Cra cra;
+    @Column(name = "datcad")
+    private Date dataCadastro;
 
     public Aluno(Aluno aluno) {
     }
@@ -62,12 +65,19 @@ public class Aluno implements Serializable {
         this.senha = senha;
     }
 
-    public Semestre getSemestre() {
-        return semestre;
+    public Cra getCra() {
+        return cra;
     }
 
-    public void setSemestre(Semestre semestre) {
-        this.semestre = semestre;
+    public void setCra(Cra cra) {
+        this.cra = cra;
     }
 
+    public Date getDataCadastro() {
+        return dataCadastro;
+    }
+
+    public void setDataCadastro(Date dataCadastro) {
+        this.dataCadastro = dataCadastro;
+    }
 }

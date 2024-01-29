@@ -17,9 +17,6 @@ public class GradeCurricular implements Serializable {
     private Long codigo;
     @Column(name = "numpr")
     private Integer numeroPeriodo;
-    @OneToOne
-    @JoinColumn(name = "codcs", referencedColumnName = "codcs")
-    private Curso curso;
     @ManyToOne
     @JoinColumn(name = "coddcp", referencedColumnName = "coddcp")
     private Disciplina disciplina;
@@ -38,14 +35,6 @@ public class GradeCurricular implements Serializable {
 
     public void setNumeroPeriodo(Integer numeroPeriodo) {
         this.numeroPeriodo = numeroPeriodo;
-    }
-
-    public Curso getCurso() {
-        return curso;
-    }
-
-    public void setCurso(Curso curso) {
-        this.curso = curso;
     }
 
     public Disciplina getDisciplina() {

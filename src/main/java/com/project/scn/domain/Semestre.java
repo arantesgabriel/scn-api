@@ -21,10 +21,13 @@ public class Semestre implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codsm")
     private Long codigo;
-    @Column(name = "numpr")
-    private Integer numeroPeriodo;
-    @Column(name = "mediasm")
-    private Float mediaFinal;
+    @Column(name = "idtsm")
+    private String identificacao;
+    @Column(name = "statsm")
+    private Enum status;
+    @ManyToOne
+    @JoinColumn(name = "codaln", referencedColumnName = "codaln")
+    private Aluno aluno;
 
     public Long getCodigo() {
         return codigo;
@@ -34,21 +37,27 @@ public class Semestre implements Serializable {
         this.codigo = codigo;
     }
 
-    public Integer setNumeroPeriodo() {
-        return numeroPeriodo;
+    public String getIdentificacao() {
+        return identificacao;
     }
 
-    public void setNumeroPeriodo(Integer numeroPeriodo) {
-        this.numeroPeriodo = numeroPeriodo;
+    public void setIdentificacao(String identificacao) {
+        this.identificacao = identificacao;
     }
 
-    public Float getMediaTotal() {
-        return mediaFinal;
+    public Enum getStatus() {
+        return status;
     }
 
-    public void setMediaTotal(Float mediaFinal) {
-        this.mediaFinal = mediaFinal;
+    public void setStatus(Enum status) {
+        this.status = status;
     }
 
+    public Aluno getAluno() {
+        return aluno;
+    }
 
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
+    }
 }
