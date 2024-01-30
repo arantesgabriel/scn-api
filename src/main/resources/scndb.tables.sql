@@ -1,3 +1,11 @@
+CREATE TABLE scndb.tcra
+(
+    codcra   INT NOT NULL AUTO_INCREMENT,
+    mediasm DECIMAL DEFAULT 0,
+    mediacs DECIMAL DEFAULT 0,
+    PRIMARY KEY (codcra)
+);
+
 CREATE TABLE scndb.tcurso
 (
     codcs  INT     NOT NULL AUTO_INCREMENT,
@@ -31,7 +39,7 @@ CREATE TABLE scndb.taluno
 CREATE TABLE scndb.tgrade
 (
     codgrd INT AUTO_INCREMENT,
-    numpr  VARCHAR(255),
+    numpr  NUMERIC,
     coddcp INT,
     PRIMARY KEY (codgrd),
     FOREIGN KEY (coddcp)
@@ -40,9 +48,9 @@ CREATE TABLE scndb.tgrade
 
 CREATE TABLE scndb.tsemestre
 (
-    codsm   INT AUTO_INCREMENT,
-    numpr   NUMERIC,
-    mediasm DECIMAL DEFAULT 0,
+    codsm  INT AUTO_INCREMENT,
+    idtsm  VARCHAR(255),
+    statsm BOOLEAN DEFAULT FALSE,
     PRIMARY KEY (codsm)
 );
 

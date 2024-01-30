@@ -1,6 +1,7 @@
 package com.project.scn.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -8,7 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -16,19 +17,21 @@ import jakarta.persistence.Table;
 public class Aluno implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "codaln")
-	private Long codigo;
-	@Column(name = "nomealn")
-	private String nome;
-	@Column(name = "usraln")
-	private String usuario;
-	@Column(name = "senhaaln")
-	private String senha;
-	@ManyToOne
-	@JoinColumn(name = "codsm", referencedColumnName = "codsm")
-	private Semestre semestre;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "codaln")
+    private Long codigo;
+    @Column(name = "nomealn")
+    private String nome;
+    @Column(name = "usraln")
+    private String usuario;
+    @Column(name = "senhaaln")
+    private String senha;
+    @OneToOne
+    @JoinColumn(name = "codcra", referencedColumnName = "codcra")
+    private Cra cra;
+    @Column(name = "datcad")
+    private Date dataCadastro;
 
 	public Aluno(Aluno aluno) {
 	}
@@ -69,12 +72,19 @@ public class Aluno implements Serializable {
 		this.senha = senha;
 	}
 
-	public Semestre getSemestre() {
-		return semestre;
-	}
+    public Cra getCra() {
+        return cra;
+    }
 
-	public void setSemestre(Semestre semestre) {
-		this.semestre = semestre;
-	}
+    public void setCra(Cra cra) {
+        this.cra = cra;
+    }
 
+    public Date getDataCadastro() {
+        return dataCadastro;
+    }
+
+    public void setDataCadastro(Date dataCadastro) {
+        this.dataCadastro = dataCadastro;
+    }
 }
