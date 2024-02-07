@@ -14,49 +14,59 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "tcurso")
 public class Curso implements Serializable {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "codcs")
-	private Long codigo;
-	@Column(name = "nomecs")
-	private String nome;
-	@Column(name = "durccs")
-	private Integer duracao;
-	@ManyToOne
-	@JoinColumn(name = "codaln", referencedColumnName = "codaln")
-	private Aluno aluno;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "codcs")
+    private Long codigo;
+    @Column(name = "nomecs")
+    private String nome;
+    @Column(name = "drccs")
+    private Integer duracao;
+    @ManyToOne
+    @JoinColumn(name = "codaln", referencedColumnName = "codaln")
+    private Aluno aluno;
+    @Column(name = "indatv")
+    private Boolean indicadorAtivo;
 
-	public Long getCodigo() {
-		return codigo;
-	}
+    public Long getCodigo() {
+        return codigo;
+    }
 
-	public void setCodigo(Long codigo) {
-		this.codigo = codigo;
-	}
+    public void setCodigo(Long codigo) {
+        this.codigo = codigo;
+    }
 
-	public String getNome() {
-		return nome;
-	}
+    public String getNome() {
+        return nome;
+    }
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-	public Integer getDuracao() {
-		return duracao;
-	}
+    public Integer getDuracao() {
+        return duracao;
+    }
 
-	public void setDuracao(Integer duracao) {
-		this.duracao = duracao;
-	}
+    public void setDuracao(Integer duracao) {
+        this.duracao = duracao;
+    }
 
-	public Aluno getAluno() {
-		return aluno;
-	}
+    public Aluno getAluno() {
+        return aluno;
+    }
 
-	public void setAluno(Aluno aluno) {
-		this.aluno = aluno;
-	}
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
+    }
+
+    public Boolean getIndicadorAtivo() {
+        return indicadorAtivo;
+    }
+
+    public void setIndicadorAtivo(Boolean indicadorAtivo) {
+        this.indicadorAtivo = indicadorAtivo;
+    }
 }

@@ -14,7 +14,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "tsemestre")
 public class Semestre implements Serializable {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,19 +22,19 @@ public class Semestre implements Serializable {
     private Long codigo;
     @Column(name = "idtsm")
     private String identificacao;
-    @Column(name = "statsm")
-    private Enum status;
     @ManyToOne
     @JoinColumn(name = "codaln", referencedColumnName = "codaln")
     private Aluno aluno;
+    @Column(name = "indatv")
+    private Boolean indicadorAtivo;
 
-	public Long getCodigo() {
-		return codigo;
-	}
+    public Long getCodigo() {
+        return codigo;
+    }
 
-	public void setCodigo(Long codigo) {
-		this.codigo = codigo;
-	}
+    public void setCodigo(Long codigo) {
+        this.codigo = codigo;
+    }
 
     public String getIdentificacao() {
         return identificacao;
@@ -44,19 +44,19 @@ public class Semestre implements Serializable {
         this.identificacao = identificacao;
     }
 
-    public Enum getStatus() {
-        return status;
-    }
-
-    public void setStatus(Enum status) {
-        this.status = status;
-    }
-
     public Aluno getAluno() {
         return aluno;
     }
 
     public void setAluno(Aluno aluno) {
         this.aluno = aluno;
+    }
+
+    public Boolean getIndicadorAtivo() {
+        return indicadorAtivo;
+    }
+
+    public void setIndicadorAtivo(Boolean indicadorAtivo) {
+        this.indicadorAtivo = indicadorAtivo;
     }
 }

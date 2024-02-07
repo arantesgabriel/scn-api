@@ -1,17 +1,10 @@
-CREATE TABLE scndb.tcra
-(
-    codcra   INT NOT NULL AUTO_INCREMENT,
-    mediasm DECIMAL DEFAULT 0,
-    mediacs DECIMAL DEFAULT 0,
-    PRIMARY KEY (codcra)
-);
-
 CREATE TABLE scndb.tcurso
 (
     codcs  INT     NOT NULL AUTO_INCREMENT,
-    nomecs VARCHAR(255),
-    durccs NUMERIC NOT NULL,
+    nomecs VARCHAR(255) NOT NULL,
+    drccs  NUMERIC NOT NULL,
     codaln INT,
+    indatv BOOLEAN NOT NULL,
     PRIMARY KEY (codcs),
     FOREIGN KEY (codaln)
         REFERENCES scndb.taluno (codaln)
@@ -21,7 +14,18 @@ CREATE TABLE scndb.trelacaoalndcp
 (
     codaln INT,
     coddcp INT,
-    PRIMARY KEY (codaln,coddcp)
+    PRIMARY KEY (codaln, coddcp)
+);
+
+CREATE TABLE scndb.tsemestre
+(
+    codsm  INT AUTO_INCREMENT,
+    idtsm  VARCHAR(255),
+    codaln INT,
+    indatv BOOLEAN,
+    PRIMARY KEY (codsm),
+    FOREIGN KEY (codaln)
+        REFERENCES scndb.taluno (codaln)
 );
 
 CREATE TABLE scndb.taluno
@@ -30,10 +34,20 @@ CREATE TABLE scndb.taluno
     nomealn  VARCHAR(255),
     usraln   VARCHAR(255),
     senhaaln VARCHAR(255),
-    codsm    INT,
+    codcra   INT,
+    datcad   DATE,
+    indatv   BOOLEAN,
     PRIMARY KEY (codaln),
-    FOREIGN KEY (codsm)
-        REFERENCES scndb.tsemestre (codsm)
+    FOREIGN KEY (codcra)
+        REFERENCES scndb.tcra (codcra)
+);
+
+CREATE TABLE scndb.tcra
+(
+    codcra  INT NOT NULL AUTO_INCREMENT,
+    mediasm DECIMAL DEFAULT 0,
+    mediacs DECIMAL DEFAULT 0,
+    PRIMARY KEY (codcra)
 );
 
 CREATE TABLE scndb.tgrade
@@ -46,14 +60,6 @@ CREATE TABLE scndb.tgrade
         REFERENCES scndb.tdisciplina (coddcp)
 );
 
-CREATE TABLE scndb.tsemestre
-(
-    codsm  INT AUTO_INCREMENT,
-    idtsm  VARCHAR(255),
-    statsm BOOLEAN DEFAULT FALSE,
-    PRIMARY KEY (codsm)
-);
-
 CREATE TABLE scndb.tdisciplina
 (
     coddcp       INT AUTO_INCREMENT,
@@ -64,6 +70,7 @@ CREATE TABLE scndb.tdisciplina
     statapr      BOOLEAN DEFAULT FALSE,
     codavl       INT,
     codtrb       INT,
+    indatv       BOOLEAN,
     PRIMARY KEY (coddcp),
     FOREIGN KEY (codtrb)
         REFERENCES scndb.ttrabalho (codtrb),

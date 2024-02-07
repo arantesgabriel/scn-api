@@ -1,5 +1,6 @@
 package com.project.scn.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,25 +21,30 @@ import com.project.scn.service.CursoService;
 @CrossOrigin("*")
 public class CursoController {
 
-	@Autowired
-	CursoService cursoService;
+    @Autowired
+    CursoService cursoService;
 
-	@GetMapping("buscarCurso/{codigo}")
-	public ResponseEntity<?> buscarCurso(@PathVariable Long codigo) {
-		Optional<Curso> curso = cursoService.buscarCurso(codigo);
-		if (curso.isEmpty()) {
-			return ResponseEntity.ok("Nenhum curso encontrado");
-		} else {
-			return ResponseEntity.ok(curso);
-		}
-	}
+    @GetMapping("listarCursos")
+    public List<Curso> listarCursos() throws Exception {
+        return cursoService.listarCursos();
+    }
 
-//	@PostMapping("cadastroCurso")
-//	public ResponseEntity<String> cadastrarCurso(@RequestBody CursoDTO cursoDTO) {
-//		if (cursoDTO.getNome().trim() == null || cursoDTO.getDuracao() == null) {
-//			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("É preciso informar todos os campos");
-//		}
-//		return ResponseEntity.ok(cursoService.cadastrarCurso(cursoDTO));
-//	}
+    @GetMapping("buscarCurso/{codigo}")
+    public ResponseEntity<?> buscarCurso(@PathVariable Long codigo) {
+        Optional<Curso> curso = cursoService.buscarCurso(codigo);
+        if (curso.isEmpty()) {
+            return ResponseEntity.ok("Nenhum curso encontrado");
+        } else {
+            return ResponseEntity.ok(curso);
+        }
+    }
+
+    @PostMapping("cadastrarCurso")
+    public ResponseEntity<String> cadastrarCurso(@RequestBody CursoDTO cursoDTO) {
+        if (cursoDTO.getNome().trim() == null || cursoDTO.getDuracao() == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("É preciso informar todos os campos.");
+        }
+        return ResponseEntity.ok(cursoService.cadastrarCurso(cursoDTO));
+    }
 
 }
