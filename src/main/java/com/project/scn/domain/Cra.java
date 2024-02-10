@@ -12,9 +12,9 @@ public class Cra implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codcra")
     private Long codigo;
-    @Column(name = "medsm")
+    @Column(name = "mediasm")
     private Double mediaSemestre;
-    @Column(name = "medcs")
+    @Column(name = "mediacs")
     private Double mediaCurso;
 
     public Long getCodigo() {

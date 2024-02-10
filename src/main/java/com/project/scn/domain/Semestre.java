@@ -1,6 +1,7 @@
 package com.project.scn.domain;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -22,6 +23,10 @@ public class Semestre implements Serializable {
     private Long codigo;
     @Column(name = "idtsm")
     private String identificacao;
+    @Column(name = "datini")
+    private LocalDate dataInicio;
+    @Column(name = "datfim")
+    private LocalDate dataFim;
     @ManyToOne
     @JoinColumn(name = "codaln", referencedColumnName = "codaln")
     private Aluno aluno;
@@ -36,12 +41,29 @@ public class Semestre implements Serializable {
         this.codigo = codigo;
     }
 
+
     public String getIdentificacao() {
         return identificacao;
     }
 
     public void setIdentificacao(String identificacao) {
         this.identificacao = identificacao;
+    }
+
+    public LocalDate getDataInicio() {
+        return dataInicio;
+    }
+
+    public void setDataInicio(LocalDate dataInicio) {
+        this.dataInicio = dataInicio;
+    }
+
+    public LocalDate getDataFim() {
+        return dataFim;
+    }
+
+    public void setDataFim(LocalDate dataFim) {
+        this.dataFim = dataFim;
     }
 
     public Aluno getAluno() {

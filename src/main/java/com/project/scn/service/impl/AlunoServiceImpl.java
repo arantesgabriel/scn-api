@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import com.project.scn.DTO.AlunoStatusRequestDTO;
+import com.project.scn.domain.Cra;
+import com.project.scn.repository.CraRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,9 @@ public class AlunoServiceImpl implements AlunoService {
 
     @Autowired
     AlunoRepository alunoRepository;
+
+    @Autowired
+    CraRepository craRepository;
 
     public List<Aluno> listarAlunos() {
         return alunoRepository.findAll();
@@ -38,9 +43,8 @@ public class AlunoServiceImpl implements AlunoService {
             throw new Exception("Preencha o campo 'senha' corretamente.");
         } else {
             String senha = aluno.getSenha();
-            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-            String senhaCriptografada = passwordEncoder.encode(senha);
-            aluno.setSenha(senhaCriptografada);
+            aluno.setSenha(criptografarSenha(senha));
+            aluno.setCra(gerarCra());
             aluno.setDataCadastro(LocalDateTime.now());
             aluno.setIndicadorAtivo(true);
             alunoRepository.save(aluno);
@@ -48,17 +52,26 @@ public class AlunoServiceImpl implements AlunoService {
         }
     }
 
+    public String criptografarSenha(String senha) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        return passwordEncoder.encode(senha);
+    }
+
+    public Cra gerarCra() {
+        Cra cra = new Cra();
+        cra.setMediaCurso(0.0);
+        cra.setMediaSemestre(0.0);
+        craRepository.save(cra);
+        return cra;
+    }
+
     @Override
     public String efetuarLogin(AlunoDTO alunoDTO) throws Exception {
         String usuario = alunoDTO.getUsuario();
         String senha = alunoDTO.getSenha();
-
         Aluno aluno = alunoRepository.findAlunoByUsuario(usuario);
-
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-
         boolean usuarioValido = alunoRepository.existsByUsuario(usuario);
-
         if (usuarioValido && passwordEncoder.matches(senha, aluno.getSenha())) {
             return "Login efetuado com sucesso!";
         } else {

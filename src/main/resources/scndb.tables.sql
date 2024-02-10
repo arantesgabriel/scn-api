@@ -1,10 +1,10 @@
 CREATE TABLE scndb.tcurso
 (
-    codcs  INT     NOT NULL AUTO_INCREMENT,
+    codcs  INT          NOT NULL AUTO_INCREMENT,
     nomecs VARCHAR(255) NOT NULL,
-    drccs  NUMERIC NOT NULL,
+    drccs  NUMERIC      NOT NULL,
     codaln INT,
-    indatv BOOLEAN NOT NULL,
+    indatv BOOLEAN      NOT NULL,
     PRIMARY KEY (codcs),
     FOREIGN KEY (codaln)
         REFERENCES scndb.taluno (codaln)
@@ -21,6 +21,8 @@ CREATE TABLE scndb.tsemestre
 (
     codsm  INT AUTO_INCREMENT,
     idtsm  VARCHAR(255),
+    datini DATE NOT NULL,
+    datfim DATE NOT NULL,
     codaln INT,
     indatv BOOLEAN,
     PRIMARY KEY (codsm),
@@ -30,11 +32,11 @@ CREATE TABLE scndb.tsemestre
 
 CREATE TABLE scndb.taluno
 (
-    codaln   INT NOT NULL AUTO_INCREMENT,
-    nomealn  VARCHAR(255),
-    usraln   VARCHAR(255),
-    senhaaln VARCHAR(255),
-    codcra   INT,
+    codaln   INT          NOT NULL AUTO_INCREMENT,
+    nomealn  VARCHAR(255) NOT NULL,
+    usraln   VARCHAR(255) NOT NULL,
+    senhaaln VARCHAR(255) NOT NULL,
+    codcra   INT          NOT NULL,
     datcad   DATE,
     indatv   BOOLEAN,
     PRIMARY KEY (codaln),
