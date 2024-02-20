@@ -2,14 +2,7 @@ package com.project.scn.domain;
 
 import java.io.Serializable;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "tdisciplina")
@@ -38,6 +31,9 @@ public class Disciplina implements Serializable {
     private Trabalho trabalho;
     @Column(name = "indatv")
     private Boolean indicadorAtivo;
+    @ManyToOne
+    @JoinColumn(name = "codgrd", referencedColumnName = "codgrd")
+    private GradeCurricular gradeCurricular;
 
     public Long getCodigo() {
         return codigo;
@@ -109,5 +105,13 @@ public class Disciplina implements Serializable {
 
     public void setIndicadorAtivo(Boolean indicadorAtivo) {
         this.indicadorAtivo = indicadorAtivo;
+    }
+
+    public GradeCurricular getGradeCurricular() {
+        return gradeCurricular;
+    }
+
+    public void setGradeCurricular(GradeCurricular gradeCurricular) {
+        this.gradeCurricular = gradeCurricular;
     }
 }

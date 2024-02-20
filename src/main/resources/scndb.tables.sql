@@ -4,10 +4,20 @@ CREATE TABLE scndb.tcurso
     nomecs VARCHAR(255) NOT NULL,
     drccs  NUMERIC      NOT NULL,
     codaln INT,
+    codgrd INT,
     indatv BOOLEAN      NOT NULL,
     PRIMARY KEY (codcs),
     FOREIGN KEY (codaln)
         REFERENCES scndb.taluno (codaln)
+);
+
+CREATE TABLE scndb.trelacaogrddcp
+(
+    codgrd INT,
+    coddcp INT,
+    PRIMARY KEY (codgrd, coddcp),
+    FOREIGN KEY (codgrd) REFERENCES scndb.tgrade (codgrd),
+    FOREIGN KEY (coddcp) REFERENCES scndb.tdisciplina (coddcp)
 );
 
 CREATE TABLE scndb.trelacaoalndcp
@@ -65,7 +75,7 @@ CREATE TABLE scndb.tgrade
 CREATE TABLE scndb.tdisciplina
 (
     coddcp       INT AUTO_INCREMENT,
-    nomedcp      VARCHAR(255),
+    nomedcp      VARCHAR(255) NOT NULL,
     qtdfaltadcp  INTEGER,
     professordcp VARCHAR(150),
     totnotadcp   DECIMAL DEFAULT 0,

@@ -3,6 +3,7 @@ package com.project.scn.service.impl;
 import java.util.List;
 import java.util.Optional;
 
+import com.project.scn.DTO.GradeDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,8 +35,15 @@ public class CursoServiceImpl implements CursoService {
         return "Curso cadastrado com sucesso!";
     }
 
+    public String associarGradeCurricular(Long codigoCurso, Long codigoGrade) throws Exception {
+        if (buscarCursoPorCodigo(codigoCurso) != null) {
+        Curso cursoAtualizado = new Curso();
+        }
+        return;
+    }
+
     @Override
-    public Optional<Curso> buscarCurso(Long codigo) {
-        return cursoRepository.buscarCurso(codigo);
+    public Optional<Curso> buscarCursoPorCodigo(Long codigo) {
+        return cursoRepository.buscarCursoPorCodigo(codigo);
     }
 }

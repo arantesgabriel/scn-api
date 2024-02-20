@@ -9,7 +9,7 @@ import com.project.scn.domain.Curso;
 
 public interface CursoRepository extends JpaRepository<Curso, Long> {
 
-	@Query("SELECT cs FROM Curso cs WHERE :codigo = cs.codigo")
-	Optional<Curso> buscarCurso(Long codigo);
+    @Query("SELECT cs FROM Curso cs WHERE :codigo = cs.codigo")
+    Optional<Curso> buscarCursoPorCodigo(Long codigo);
 
 }

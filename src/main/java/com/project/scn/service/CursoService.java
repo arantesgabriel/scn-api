@@ -12,6 +12,8 @@ public interface CursoService {
 
     String cadastrarCurso(CursoDTO cursoDTO);
 
-    Optional<Curso> buscarCurso(Long codigo);
+    String associarGradeCurricular(Long codigoCurso, Long codigoGrade) throws Exception;
+
+    Optional<Curso> buscarCursoPorCodigo(Long codigo);
 
 }

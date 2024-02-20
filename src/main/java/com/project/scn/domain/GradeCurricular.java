@@ -1,21 +1,15 @@
 package com.project.scn.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "tgrade")
 public class GradeCurricular implements Serializable {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,31 +17,40 @@ public class GradeCurricular implements Serializable {
     private Long codigo;
     @Column(name = "numpr")
     private Integer numeroPeriodo;
-    @ManyToOne
-    @JoinColumn(name = "coddcp", referencedColumnName = "coddcp")
-    private Disciplina disciplina;
+    @OneToMany(mappedBy = "gradeCurricular", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Disciplina> disciplinas = new ArrayList<>();
+    @Column(name = "indatv")
+    private Integer indicadorAtivo;
 
-	public Long getCodigo() {
-		return codigo;
-	}
-
-	public void setCodigo(Long codigo) {
-		this.codigo = codigo;
-	}
-
-	public Integer getNumeroPeriodo() {
-		return numeroPeriodo;
-	}
-
-	public void setNumeroPeriodo(Integer numeroPeriodo) {
-		this.numeroPeriodo = numeroPeriodo;
-	}
-
-    public Disciplina getDisciplina() {
-        return disciplina;
+    public Long getCodigo() {
+        return codigo;
     }
 
-	public void setDisciplina(Disciplina disciplina) {
-		this.disciplina = disciplina;
-	}
+    public void setCodigo(Long codigo) {
+        this.codigo = codigo;
+    }
+
+    public Integer getNumeroPeriodo() {
+        return numeroPeriodo;
+    }
+
+    public void setNumeroPeriodo(Integer numeroPeriodo) {
+        this.numeroPeriodo = numeroPeriodo;
+    }
+
+    public List<Disciplina> getDisciplinas() {
+        return disciplinas;
+    }
+
+    public void setDisciplinas(List<Disciplina> disciplinas) {
+        this.disciplinas = disciplinas;
+    }
+
+    public Integer getIndicadorAtivo() {
+        return indicadorAtivo;
+    }
+
+    public void setIndicadorAtivo(Integer indicadorAtivo) {
+        this.indicadorAtivo = indicadorAtivo;
+    }
 }

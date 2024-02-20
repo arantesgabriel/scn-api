@@ -7,7 +7,10 @@ import com.project.scn.domain.Disciplina;
 
 public interface DisciplinaService {
 
-	List<Disciplina> buscarDisciplinas();
+    List<Disciplina> listarDisciplinas();
 
-	String adicionarDisciplina(DisciplinaDTO disciplinaDTO);
+    String cadastrarDisciplina(DisciplinaDTO disciplinaDTO) throws Exception;
+
+    String adicionarDisciplina(DisciplinaDTO disciplinaDTO);
+
 }
