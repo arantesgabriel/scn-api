@@ -17,6 +17,8 @@ public class Disciplina implements Serializable {
     private String nome;
     @Column(name = "qtdfaltadcp")
     private Integer qtdFalta;
+    @Column(name = "codgrd")
+    private Long codigoGrade;
     @Column(name = "professordcp")
     private String professor;
     @Column(name = "totnotadcp")
@@ -31,9 +33,6 @@ public class Disciplina implements Serializable {
     private Trabalho trabalho;
     @Column(name = "indatv")
     private Boolean indicadorAtivo;
-    @ManyToOne
-    @JoinColumn(name = "codgrd", referencedColumnName = "codgrd")
-    private GradeCurricular gradeCurricular;
 
     public Long getCodigo() {
         return codigo;
@@ -57,6 +56,14 @@ public class Disciplina implements Serializable {
 
     public void setQtdFalta(Integer qtdFalta) {
         this.qtdFalta = qtdFalta;
+    }
+
+    public Long getCodigoGrade() {
+        return codigoGrade;
+    }
+
+    public void setCodigoGrade(Long codigoGrade) {
+        this.codigoGrade = codigoGrade;
     }
 
     public String getProfessor() {
@@ -107,11 +114,4 @@ public class Disciplina implements Serializable {
         this.indicadorAtivo = indicadorAtivo;
     }
 
-    public GradeCurricular getGradeCurricular() {
-        return gradeCurricular;
-    }
-
-    public void setGradeCurricular(GradeCurricular gradeCurricular) {
-        this.gradeCurricular = gradeCurricular;
-    }
 }

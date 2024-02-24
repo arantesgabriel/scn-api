@@ -2,8 +2,11 @@ package com.project.scn.service.impl;
 
 import com.project.scn.domain.GradeCurricular;
 import com.project.scn.repository.GradeCurricularRepository;
+import com.project.scn.service.GradeCurricularService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class GradeCurricularServiceImpl implements GradeCurricularService {
@@ -11,13 +14,19 @@ public class GradeCurricularServiceImpl implements GradeCurricularService {
     @Autowired
     GradeCurricularRepository gradeCurricularRepository;
 
+    public List<GradeCurricular> listarGrades() {
+        return gradeCurricularRepository.findAll();
+    }
+
     public String cadastrarGrade(GradeCurricular grade) throws Exception {
-        if (grade.getNumeroPeriodo() == null) {
-            throw new Exception("Preencha o campo 'número do período' corretamente.");
+        if (grade.getCodigoSemestre() == null) {
+            throw new Exception("Preencha corretamente o campo 'codigoSemestre'");
+        } else {
+            GradeCurricular novaGrade = new GradeCurricular();
+            novaGrade.setCodigoSemestre(grade.getCodigoSemestre());
+            novaGrade.setIndicadorAtivo(true);
+            gradeCurricularRepository.save(novaGrade);
         }
-        GradeCurricular gradeCurricular = new GradeCurricular();
-        gradeCurricular.setNumeroPeriodo(grade.getNumeroPeriodo());
-        gradeCurricular.setDisciplinas(grade.getDisciplinas());
-        return ("Grade cadastrada com sucesso");
+        return ("Grade cadastrada com sucesso!");
     }
 }

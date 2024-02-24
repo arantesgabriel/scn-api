@@ -15,6 +15,11 @@ public class SemestreController {
     @Autowired
     SemestreService semestreService;
 
+    @PostConstruct
+    public void gerarSemestre() {
+        semestreService.gerarNovoSemestreAutomatico();
+    }
+
     @PostMapping("salvarSemestre")
     public ResponseEntity<?> salvarSemestre(@RequestBody Semestre semestre) {
         try {
@@ -22,11 +27,6 @@ public class SemestreController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(e.getMessage());
         }
-    }
-
-    @PostConstruct
-    public void gerarSemestre() {
-        semestreService.gerarNovoSemestre();
     }
 
     @GetMapping("ultimoSemestre")

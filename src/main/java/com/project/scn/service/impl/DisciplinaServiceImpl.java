@@ -6,14 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.scn.DTO.DisciplinaDTO;
-import com.project.scn.domain.Aluno;
 import com.project.scn.domain.Disciplina;
-import com.project.scn.domain.RelacaoAlunoDisciplina;
-import com.project.scn.domain.RelacaoAlunoDisciplinaPK;
 import com.project.scn.repository.DisciplinaRepository;
 import com.project.scn.service.AlunoService;
 import com.project.scn.service.DisciplinaService;
-import com.project.scn.service.RelacaoAlunoDisciplinaService;
 
 @Service
 public class DisciplinaServiceImpl implements DisciplinaService {
@@ -25,7 +21,6 @@ public class DisciplinaServiceImpl implements DisciplinaService {
     AlunoService alunoService;
 
     @Autowired
-    RelacaoAlunoDisciplinaService relacaoAlunoDisciplinaService;
 
     @Override
     public List<Disciplina> listarDisciplinas() {
@@ -51,26 +46,17 @@ public class DisciplinaServiceImpl implements DisciplinaService {
         if (disciplinaDTO.getNome() == null || disciplinaDTO.getNome().isEmpty()) {
             throw new Exception("Preencha corretamente o campo 'nome'.");
         }
-
         if (buscarDisciplinaPorNome(disciplinaDTO.getNome().toUpperCase()) != null) {
             return ("A disciplina já existe.");
         } else {
-            Disciplina disciplina = new Disciplina();
-            disciplina.setNome(disciplinaDTO.getNome().toUpperCase());
-            disciplina.setIndicadorAtivo(true);
-            disciplinaRepository.save(disciplina);
+            Disciplina novaDisciplina = new Disciplina();
+            novaDisciplina.setNome(disciplinaDTO.getNome().toUpperCase());
+            novaDisciplina.setCodigoGrade(disciplinaDTO.getCodigoGrade());
+            novaDisciplina.setIndicadorAtivo(true);
+            disciplinaRepository.save(novaDisciplina);
             return ("Disciplina cadastrada com sucesso!");
         }
 
     }
 
-    public String adicionarDisciplina(DisciplinaDTO disciplinaDTO) {
-        Aluno aluno = alunoService.buscarAluno(disciplinaDTO.getCodigoAluno());
-        Disciplina disciplina = buscarDisciplinaPorCodigo(disciplinaDTO.getCodigo());
-        RelacaoAlunoDisciplinaPK pkRelacao = new RelacaoAlunoDisciplinaPK(aluno.getCodigo(), disciplina.getCodigo());
-        RelacaoAlunoDisciplina novaRelacao = new RelacaoAlunoDisciplina();
-        novaRelacao.setPkRelacao(pkRelacao);
-        relacaoAlunoDisciplinaService.salvar(novaRelacao);
-        return "Disciplina adicionada ao aluno";
-    }
 }

@@ -9,8 +9,10 @@ public interface DisciplinaService {
 
     List<Disciplina> listarDisciplinas();
 
-    String cadastrarDisciplina(DisciplinaDTO disciplinaDTO) throws Exception;
+    public Disciplina buscarDisciplinaPorNome(String nomeDisciplina);
 
-    String adicionarDisciplina(DisciplinaDTO disciplinaDTO);
+    public Disciplina buscarDisciplinaPorCodigo(Long codigoDisciplina);
+
+    String cadastrarDisciplina(DisciplinaDTO disciplinaDTO) throws Exception;
 
 }

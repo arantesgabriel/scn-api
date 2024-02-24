@@ -42,13 +42,15 @@ public class AlunoServiceImpl implements AlunoService {
         if (aluno.getSenha() == null || aluno.getSenha().isEmpty()) {
             throw new Exception("Preencha o campo 'senha' corretamente.");
         } else {
-            String senha = aluno.getSenha();
-            aluno.setSenha(criptografarSenha(senha));
-            aluno.setCra(gerarCra());
-            aluno.setDataCadastro(LocalDateTime.now());
-            aluno.setIndicadorAtivo(true);
-            alunoRepository.save(aluno);
-            return ("Usuário cadastrado com sucesso!");
+            Aluno novoAluno = new Aluno();
+            novoAluno.setSenha(criptografarSenha(aluno.getSenha()));
+            novoAluno.setCodigoSemestre(aluno.getCodigoSemestre());
+            novoAluno.setCodigoCurso(aluno.getCodigoCurso());
+            novoAluno.setCra(gerarCra());
+            novoAluno.setDataCadastro(LocalDateTime.now());
+            novoAluno.setIndicadorAtivo(true);
+            alunoRepository.save(novoAluno);
+            return ("Aluno cadastrado com sucesso!");
         }
     }
 

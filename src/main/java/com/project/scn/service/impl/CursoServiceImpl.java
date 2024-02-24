@@ -25,21 +25,21 @@ public class CursoServiceImpl implements CursoService {
         return cursoRepository.findAll();
     }
 
-    @Override
-    public String cadastrarCurso(CursoDTO cursoDTO) {
-        Curso curso = new Curso();
-        curso.setIndicadorAtivo(true);
-        cursoDTO.setNome(cursoDTO.getNome().toUpperCase());
-        cursoMapper.DTOParaCurso(cursoDTO, curso);
-        cursoRepository.save(curso);
-        return "Curso cadastrado com sucesso!";
-    }
-
-    public String associarGradeCurricular(Long codigoCurso, Long codigoGrade) throws Exception {
-        if (buscarCursoPorCodigo(codigoCurso) != null) {
-        Curso cursoAtualizado = new Curso();
+    public String cadastrarCurso(Curso curso) throws Exception {
+        if (curso.getNome().isEmpty() || curso.getNome() == null) {
+            throw new Exception("Preencha o campo 'nome' corretamente.");
         }
-        return;
+        if (curso.getCodigoGrade() == null) {
+            throw new Exception("Preencha o campo 'codigoGrade' corretamente.");
+        } else {
+            Curso novoCurso = new Curso();
+            novoCurso.setNome(curso.getNome().toUpperCase());
+            novoCurso.setDuracao(curso.getDuracao());
+            novoCurso.setCodigoGrade(curso.getCodigoGrade());
+            novoCurso.setIndicadorAtivo(true);
+            cursoRepository.save(novoCurso);
+            return "Curso cadastrado com sucesso!";
+        }
     }
 
     @Override

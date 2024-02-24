@@ -45,24 +45,36 @@ public class SemestreServiceImpl implements SemestreService {
         }
     }
 
-    public void gerarNovoSemestre() {
-        Semestre ultimoSemestre = semestreRepository.buscarUltimoSemestre();
+    public Semestre criarSemestre(Semestre novoSemestre) {
         LocalDate dataAtual = LocalDate.now();
-        Period periodo = Period.between(ultimoSemestre.getDataFim(), dataAtual);
-        if (periodo.getMonths() == 7) {
-            Semestre novoSemestre = new Semestre();
-            novoSemestre.setDataInicio(dataAtual);
-            novoSemestre.setDataFim(dataAtual.plusMonths(6));
-            novoSemestre.setIdentificacao(formatarData(novoSemestre.getDataInicio()));
-            ultimoSemestre.setIndicadorAtivo(false);
-            novoSemestre.setIndicadorAtivo(true);
-            semestreRepository.save(ultimoSemestre);
-            semestreRepository.save(novoSemestre);
-        }
+        novoSemestre.setDataInicio(dataAtual);
+        novoSemestre.setDataFim(dataAtual.plusMonths(6));
+        novoSemestre.setIdentificacao(formatarData(novoSemestre.getDataInicio()));
+        novoSemestre.setIndicadorAtivo(true);
+        semestreRepository.save(novoSemestre);
+        return novoSemestre;
     }
 
     public Semestre exibirUltimoSemestre() {
         return semestreRepository.buscarUltimoSemestre();
+    }
+
+    public void gerarNovoSemestreAutomatico() {
+        Semestre ultimoSemestre = semestreRepository.buscarUltimoSemestre();
+        if (ultimoSemestre == null) {
+            Semestre novoSemestre = new Semestre();
+            criarSemestre(novoSemestre);
+            return;
+        }
+
+        Period periodo = Period.between(ultimoSemestre.getDataFim(), LocalDate.now());
+        if (periodo.getMonths() == 7) {
+            Semestre novoSemestre = new Semestre();
+            criarSemestre(novoSemestre);
+            ultimoSemestre.setIndicadorAtivo(false);
+            semestreRepository.save(ultimoSemestre);
+        }
+
     }
 
 }

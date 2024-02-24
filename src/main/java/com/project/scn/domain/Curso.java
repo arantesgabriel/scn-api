@@ -18,12 +18,8 @@ public class Curso implements Serializable {
     private String nome;
     @Column(name = "drccs")
     private Integer duracao;
-    @ManyToOne
-    @JoinColumn(name = "codaln", referencedColumnName = "codaln")
-    private Aluno aluno;
-    @OneToOne
-    @JoinColumn(name = "codgrd", referencedColumnName = "codgrd")
-    private GradeCurricular gradeCurricular;
+    @Column(name = "codgrd")
+    private Long codigoGrade;
     @Column(name = "indatv")
     private Boolean indicadorAtivo;
 
@@ -51,14 +47,13 @@ public class Curso implements Serializable {
         this.duracao = duracao;
     }
 
-    public Aluno getAluno() {
-        return aluno;
+    public Long getCodigoGrade() {
+        return codigoGrade;
     }
 
-    public void setAluno(Aluno aluno) {
-        this.aluno = aluno;
+    public void setCodigoGrade(Long codigoGrade) {
+        this.codigoGrade = codigoGrade;
     }
-
 
     public Boolean getIndicadorAtivo() {
         return indicadorAtivo;

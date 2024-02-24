@@ -3,28 +3,9 @@ CREATE TABLE scndb.tcurso
     codcs  INT          NOT NULL AUTO_INCREMENT,
     nomecs VARCHAR(255) NOT NULL,
     drccs  NUMERIC      NOT NULL,
-    codaln INT,
-    codgrd INT,
+    codgrd INT          NOT NULL,
     indatv BOOLEAN      NOT NULL,
-    PRIMARY KEY (codcs),
-    FOREIGN KEY (codaln)
-        REFERENCES scndb.taluno (codaln)
-);
-
-CREATE TABLE scndb.trelacaogrddcp
-(
-    codgrd INT,
-    coddcp INT,
-    PRIMARY KEY (codgrd, coddcp),
-    FOREIGN KEY (codgrd) REFERENCES scndb.tgrade (codgrd),
-    FOREIGN KEY (coddcp) REFERENCES scndb.tdisciplina (coddcp)
-);
-
-CREATE TABLE scndb.trelacaoalndcp
-(
-    codaln INT,
-    coddcp INT,
-    PRIMARY KEY (codaln, coddcp)
+    PRIMARY KEY (codcs)
 );
 
 CREATE TABLE scndb.tsemestre
@@ -33,11 +14,8 @@ CREATE TABLE scndb.tsemestre
     idtsm  VARCHAR(255),
     datini DATE NOT NULL,
     datfim DATE NOT NULL,
-    codaln INT,
     indatv BOOLEAN,
-    PRIMARY KEY (codsm),
-    FOREIGN KEY (codaln)
-        REFERENCES scndb.taluno (codaln)
+    PRIMARY KEY (codsm)
 );
 
 CREATE TABLE scndb.taluno
@@ -46,9 +24,11 @@ CREATE TABLE scndb.taluno
     nomealn  VARCHAR(255) NOT NULL,
     usraln   VARCHAR(255) NOT NULL,
     senhaaln VARCHAR(255) NOT NULL,
-    codcra   INT          NOT NULL,
-    datcad   DATE,
-    indatv   BOOLEAN,
+    codsm    INT          NOT NULL,
+    codcs    INT          NOT NULL,
+    codcra   INT,
+    datcad   DATE         NOT NULL,
+    indatv   BOOLEAN      NOT NULL,
     PRIMARY KEY (codaln),
     FOREIGN KEY (codcra)
         REFERENCES scndb.tcra (codcra)
@@ -64,12 +44,10 @@ CREATE TABLE scndb.tcra
 
 CREATE TABLE scndb.tgrade
 (
-    codgrd INT AUTO_INCREMENT,
-    numpr  NUMERIC,
-    coddcp INT,
-    PRIMARY KEY (codgrd),
-    FOREIGN KEY (coddcp)
-        REFERENCES scndb.tdisciplina (coddcp)
+    codgrd INT NOT NULL AUTO_INCREMENT,
+    codsm  INT     NOT NULL,
+    indatv BOOLEAN NOT NULL,
+    PRIMARY KEY (codgrd)
 );
 
 CREATE TABLE scndb.tdisciplina
@@ -77,12 +55,13 @@ CREATE TABLE scndb.tdisciplina
     coddcp       INT AUTO_INCREMENT,
     nomedcp      VARCHAR(255) NOT NULL,
     qtdfaltadcp  INTEGER,
+    codgrd       INT          NOT NULL,
     professordcp VARCHAR(150),
     totnotadcp   DECIMAL DEFAULT 0,
     statapr      BOOLEAN DEFAULT FALSE,
     codavl       INT,
     codtrb       INT,
-    indatv       BOOLEAN,
+    indatv       BOOLEAN      NOT NULL,
     PRIMARY KEY (coddcp),
     FOREIGN KEY (codtrb)
         REFERENCES scndb.ttrabalho (codtrb),

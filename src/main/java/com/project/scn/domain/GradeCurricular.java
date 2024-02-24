@@ -15,12 +15,10 @@ public class GradeCurricular implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codgrd")
     private Long codigo;
-    @Column(name = "numpr")
-    private Integer numeroPeriodo;
-    @OneToMany(mappedBy = "gradeCurricular", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Disciplina> disciplinas = new ArrayList<>();
+    @Column(name = "codsm")
+    private Integer codigoSemestre;
     @Column(name = "indatv")
-    private Integer indicadorAtivo;
+    private Boolean indicadorAtivo;
 
     public Long getCodigo() {
         return codigo;
@@ -30,27 +28,19 @@ public class GradeCurricular implements Serializable {
         this.codigo = codigo;
     }
 
-    public Integer getNumeroPeriodo() {
-        return numeroPeriodo;
+    public Integer getCodigoSemestre() {
+        return codigoSemestre;
     }
 
-    public void setNumeroPeriodo(Integer numeroPeriodo) {
-        this.numeroPeriodo = numeroPeriodo;
+    public void setCodigoSemestre(Integer codigoSemestre) {
+        this.codigoSemestre = codigoSemestre;
     }
 
-    public List<Disciplina> getDisciplinas() {
-        return disciplinas;
-    }
-
-    public void setDisciplinas(List<Disciplina> disciplinas) {
-        this.disciplinas = disciplinas;
-    }
-
-    public Integer getIndicadorAtivo() {
+    public Boolean getIndicadorAtivo() {
         return indicadorAtivo;
     }
 
-    public void setIndicadorAtivo(Integer indicadorAtivo) {
+    public void setIndicadorAtivo(Boolean indicadorAtivo) {
         this.indicadorAtivo = indicadorAtivo;
     }
 }

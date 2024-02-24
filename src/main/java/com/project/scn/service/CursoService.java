@@ -10,9 +10,7 @@ public interface CursoService {
 
     List<Curso> listarCursos() throws Exception;
 
-    String cadastrarCurso(CursoDTO cursoDTO);
-
-    String associarGradeCurricular(Long codigoCurso, Long codigoGrade) throws Exception;
+    String cadastrarCurso(Curso curso) throws Exception;
 
     Optional<Curso> buscarCursoPorCodigo(Long codigo);
 

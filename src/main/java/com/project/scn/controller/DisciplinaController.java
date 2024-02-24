@@ -5,11 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.project.scn.DTO.DisciplinaDTO;
 import com.project.scn.domain.Disciplina;
@@ -27,6 +23,16 @@ public class DisciplinaController {
         return disciplinaService.listarDisciplinas();
     }
 
+    @GetMapping("buscarDisciplinaPorNome/{nome}")
+    public Disciplina buscarDisciplinaPorNome(@PathVariable String nomeDisciplina) {
+        return disciplinaService.buscarDisciplinaPorNome(nomeDisciplina);
+    }
+
+    @GetMapping("buscarDisciplinaPorCodigo/{codigo}")
+    public Disciplina buscarDisciplinaPorCodigo(@PathVariable Long codigoDisciplina) {
+        return disciplinaService.buscarDisciplinaPorCodigo(codigoDisciplina);
+    }
+
     @PostMapping("cadastrarDisciplina")
     public ResponseEntity<?> cadastrarDisciplina(@RequestBody DisciplinaDTO disciplinaDTO) {
         try {
@@ -34,11 +40,6 @@ public class DisciplinaController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(e.getMessage());
         }
-    }
-
-    @PostMapping("adicionarDisciplina")
-    public ResponseEntity<?> adicionarDisciplina(@RequestBody DisciplinaDTO disciplinaDTO) {
-        return ResponseEntity.ok(disciplinaService.adicionarDisciplina(disciplinaDTO));
     }
 
 }

@@ -27,9 +27,6 @@ public class Semestre implements Serializable {
     private LocalDate dataInicio;
     @Column(name = "datfim")
     private LocalDate dataFim;
-    @ManyToOne
-    @JoinColumn(name = "codaln", referencedColumnName = "codaln")
-    private Aluno aluno;
     @Column(name = "indatv")
     private Boolean indicadorAtivo;
 
@@ -64,14 +61,6 @@ public class Semestre implements Serializable {
 
     public void setDataFim(LocalDate dataFim) {
         this.dataFim = dataFim;
-    }
-
-    public Aluno getAluno() {
-        return aluno;
-    }
-
-    public void setAluno(Aluno aluno) {
-        this.aluno = aluno;
     }
 
     public Boolean getIndicadorAtivo() {

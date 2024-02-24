@@ -2,8 +2,8 @@ package com.project.scn.DTO;
 
 public class DisciplinaDTO {
     private Long codigo;
-    private Long codigoAluno;
     private String nome;
+    private Long codigoGrade;
 
     public Long getCodigo() {
         return codigo;
@@ -13,19 +13,19 @@ public class DisciplinaDTO {
         this.codigo = codigo;
     }
 
-    public Long getCodigoAluno() {
-        return codigoAluno;
-    }
-
-    public void setCodigoAluno(Long codigoAluno) {
-        this.codigoAluno = codigoAluno;
-    }
-
     public String getNome() {
         return nome;
     }
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public Long getCodigoGrade() {
+        return codigoGrade;
+    }
+
+    public void setCodigoGrade(Long codigoGrade) {
+        this.codigoGrade = codigoGrade;
     }
 }

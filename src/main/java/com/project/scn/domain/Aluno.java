@@ -28,6 +28,10 @@ public class Aluno implements Serializable {
     private String usuario;
     @Column(name = "senhaaln")
     private String senha;
+    @Column(name = "codsm")
+    private Long codigoSemestre;
+    @Column(name = "codcs")
+    private Long codigoCurso;
     @OneToOne
     @JoinColumn(name = "codcra", referencedColumnName = "codcra")
     private Cra cra;
@@ -73,6 +77,22 @@ public class Aluno implements Serializable {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public Long getCodigoSemestre() {
+        return codigoSemestre;
+    }
+
+    public void setCodigoSemestre(Long codigoSemestre) {
+        this.codigoSemestre = codigoSemestre;
+    }
+
+    public Long getCodigoCurso() {
+        return codigoCurso;
+    }
+
+    public void setCodigoCurso(Long codigoCurso) {
+        this.codigoCurso = codigoCurso;
     }
 
     public Cra getCra() {
