@@ -23,14 +23,18 @@ public class DisciplinaController {
         return disciplinaService.listarDisciplinas();
     }
 
-    @GetMapping("buscarDisciplinaPorNome/{nome}")
-    public Disciplina buscarDisciplinaPorNome(@PathVariable String nomeDisciplina) {
+    @GetMapping("buscarDisciplinaPorNome/{nomeDisciplina}")
+    public Disciplina buscarDisciplinaPorNome(@PathVariable String nomeDisciplina) throws Exception {
         return disciplinaService.buscarDisciplinaPorNome(nomeDisciplina);
     }
 
-    @GetMapping("buscarDisciplinaPorCodigo/{codigo}")
-    public Disciplina buscarDisciplinaPorCodigo(@PathVariable Long codigoDisciplina) {
-        return disciplinaService.buscarDisciplinaPorCodigo(codigoDisciplina);
+    @GetMapping("buscarDisciplinaPorCodigo/{codigoDisciplina}")
+    public ResponseEntity<?> buscarDisciplinaPorCodigo(@PathVariable Long codigoDisciplina) {
+        try {
+            return ResponseEntity.ok(disciplinaService.buscarDisciplinaPorCodigo(codigoDisciplina));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(e.getMessage());
+        }
     }
 
     @PostMapping("cadastrarDisciplina")

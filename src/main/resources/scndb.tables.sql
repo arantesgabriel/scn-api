@@ -44,7 +44,7 @@ CREATE TABLE scndb.tcra
 
 CREATE TABLE scndb.tgrade
 (
-    codgrd INT NOT NULL AUTO_INCREMENT,
+    codgrd INT     NOT NULL AUTO_INCREMENT,
     codsm  INT     NOT NULL,
     indatv BOOLEAN NOT NULL,
     PRIMARY KEY (codgrd)
@@ -76,6 +76,7 @@ CREATE TABLE scndb.ttrabalho
     notatottrb DECIMAL NOT NULL,
     notafintrb DECIMAL NOT NULL,
     datrb      DATE,
+    codaln     INT     NOT NULL,
     PRIMARY KEY (codtrb)
 );
 
@@ -86,5 +87,6 @@ CREATE TABLE scndb.tavaliacao
     notatotavl DECIMAL NOT NULL,
     notafinavl DECIMAL NOT NULL,
     datavl     DATE,
+    codaln     INT     NOT NULL,
     PRIMARY KEY (codavl)
 );

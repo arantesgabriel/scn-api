@@ -2,10 +2,12 @@ package com.project.scn.service.impl;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import com.project.scn.DTO.AlunoStatusRequestDTO;
 import com.project.scn.domain.Cra;
 import com.project.scn.repository.CraRepository;
+import com.project.scn.repository.SemestreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -22,10 +24,16 @@ public class AlunoServiceImpl implements AlunoService {
     AlunoRepository alunoRepository;
 
     @Autowired
+    SemestreRepository semestreRepository;
+
+    @Autowired
     CraRepository craRepository;
 
-    public List<Aluno> listarAlunos() {
-        return alunoRepository.findAll();
+    public List<Aluno> listarAlunos() throws NoSuchElementException {
+        if (alunoRepository.findAll().isEmpty()) {
+            throw new NoSuchElementException("Não existe nenhum aluno cadastrado.");
+        } else return alunoRepository.findAll();
+
     }
 
     public Aluno buscarAluno(Long codigoAluno) {
@@ -41,10 +49,18 @@ public class AlunoServiceImpl implements AlunoService {
         }
         if (aluno.getSenha() == null || aluno.getSenha().isEmpty()) {
             throw new Exception("Preencha o campo 'senha' corretamente.");
+        }
+        if (aluno.getCodigoSemestre() == null) {
+            throw new Exception("Preencha o campo 'códigoSemestre' corretamente.");
+        }
+        if (aluno.getCodigoCurso() == null) {
+            throw new Exception("Preencha o campo 'códigoCurso' corretamente.");
         } else {
             Aluno novoAluno = new Aluno();
+            novoAluno.setNome(aluno.getNome());
+            novoAluno.setUsuario(aluno.getUsuario());
             novoAluno.setSenha(criptografarSenha(aluno.getSenha()));
-            novoAluno.setCodigoSemestre(aluno.getCodigoSemestre());
+            novoAluno.setCodigoSemestre(semestreRepository.buscarUltimoSemestre().getCodigo());
             novoAluno.setCodigoCurso(aluno.getCodigoCurso());
             novoAluno.setCra(gerarCra());
             novoAluno.setDataCadastro(LocalDateTime.now());
