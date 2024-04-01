@@ -1,12 +1,13 @@
 package com.project.scn.service.impl;
 
-import com.project.scn.domain.GradeCurricular;
-import com.project.scn.repository.GradeCurricularRepository;
-import com.project.scn.service.GradeCurricularService;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.project.scn.domain.GradeCurricular;
+import com.project.scn.repository.GradeCurricularRepository;
+import com.project.scn.service.GradeCurricularService;
 
 @Service
 public class GradeCurricularServiceImpl implements GradeCurricularService {

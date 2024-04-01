@@ -1,6 +1,5 @@
 package com.project.scn;
 
-import com.project.scn.controller.SemestreController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

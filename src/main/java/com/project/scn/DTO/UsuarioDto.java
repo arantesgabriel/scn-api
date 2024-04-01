@@ -2,10 +2,10 @@ package com.project.scn.DTO;
 
 import com.project.scn.domain.Curso;
 
-public class AlunoDTO {
+public class UsuarioDto {
 
 	private Long codigo;
-	private String usuario;
+	private String login;
 	private String senha;
 	private Curso curso;
 
@@ -17,12 +17,12 @@ public class AlunoDTO {
 		this.codigo = codigo;
 	}
 
-	public String getUsuario() {
-		return usuario;
+	public String getLogin() {
+		return login;
 	}
 
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
+	public void setLogin(String login) {
+		this.login = login;
 	}
 
 	public String getSenha() {
@@ -40,4 +40,5 @@ public class AlunoDTO {
 	public void setCurso(Curso curso) {
 		this.curso = curso;
 	}
+
 }
