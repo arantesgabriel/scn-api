@@ -30,7 +30,6 @@ public class Avaliacao implements Serializable {
 	@Column(name = "datavl")
 	@JsonFormat(pattern = "dd/MM/yyyy", timezone = "GMT")
 	private Date data;
-	@
 
 	public Long getCodigo() {
 		return codigo;

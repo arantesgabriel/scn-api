@@ -14,6 +14,11 @@ public class AvaliacaoServiceImpl implements AvaliacaoService {
 
 	@Autowired
 	AvaliacaoRepository avaliacaoRepository;
+	
+	public List<Avaliacao> listarAvaliacoes() {
+		List<Avaliacao> listaAvaliacoes = avaliacaoRepository.findAll();
+		return listaAvaliacoes;
+	}
 
 	public String cadastrarAvaliacao(Avaliacao avaliacao) throws Exception {
 
@@ -32,11 +37,6 @@ public class AvaliacaoServiceImpl implements AvaliacaoService {
 			avaliacaoRepository.save(avaliacao);
 			return ("Trabalho cadastrado com sucesso!");
 		}
-	}
-
-	public List<Avaliacao> listarAvaliacoes() {
-		List<Avaliacao> listaAvaliacoes = avaliacaoRepository.findAll();
-		return listaAvaliacoes;
 	}
 
 }

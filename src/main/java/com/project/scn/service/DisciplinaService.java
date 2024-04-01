@@ -1,7 +1,6 @@
 package com.project.scn.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.project.scn.DTO.DisciplinaDTO;
 import com.project.scn.domain.Disciplina;

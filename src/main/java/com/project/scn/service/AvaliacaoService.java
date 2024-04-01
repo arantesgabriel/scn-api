@@ -6,8 +6,8 @@ import com.project.scn.domain.Avaliacao;
 
 public interface AvaliacaoService {
 
-	String cadastrarAvaliacao(Avaliacao avaliacao) throws Exception;
-
 	List<Avaliacao> listarAvaliacoes();
+
+	String cadastrarAvaliacao(Avaliacao avaliacao) throws Exception;
 
 }

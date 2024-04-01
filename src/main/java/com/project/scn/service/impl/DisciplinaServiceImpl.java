@@ -2,17 +2,15 @@ package com.project.scn.service.impl;
 
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
 import com.project.scn.DTO.DisciplinaDTO;
 import com.project.scn.domain.Disciplina;
 import com.project.scn.repository.DisciplinaRepository;
-import com.project.scn.service.AlunoService;
 import com.project.scn.service.DisciplinaService;
+import com.project.scn.service.UsuarioService;
 
 @Service
 public class DisciplinaServiceImpl implements DisciplinaService {
@@ -21,9 +19,7 @@ public class DisciplinaServiceImpl implements DisciplinaService {
     DisciplinaRepository disciplinaRepository;
 
     @Autowired
-    AlunoService alunoService;
-
-    @Autowired
+    UsuarioService alunoService;
 
     @Override
     public List<Disciplina> listarDisciplinas() throws NoSuchElementException {

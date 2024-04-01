@@ -1,18 +1,23 @@
 package com.project.scn.controller;
 
-import com.project.scn.domain.GradeCurricular;
-import com.project.scn.service.GradeCurricularService;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import com.project.scn.domain.GradeCurricular;
+import com.project.scn.service.GradeCurricularService;
 
 @RestController
+@CrossOrigin
+@RequestMapping("grade")
 public class GradeController {
 
     @Autowired

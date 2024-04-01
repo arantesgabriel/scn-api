@@ -6,8 +6,8 @@ import com.project.scn.domain.Trabalho;
 
 public interface TrabalhoService {
 
-	String cadastrarTrabalho(Trabalho trabalho) throws Exception;
-
 	List<Trabalho> listarTrabalhos();
 
+	String cadastrarTrabalho(Trabalho trabalho) throws Exception;
+	
 }
