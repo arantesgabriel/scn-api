@@ -1,66 +1,67 @@
 CREATE TABLE scndb.tcurso
 (
-    codcs  INT     NOT NULL AUTO_INCREMENT,
-    nomecs VARCHAR(255),
-    durccs NUMERIC NOT NULL,
-    codaln INT,
-    PRIMARY KEY (codcs),
-    FOREIGN KEY (codaln)
-        REFERENCES scndb.taluno (codaln)
-);
-
-CREATE TABLE scndb.trelacaoalndcp
-(
-    codrel INT NOT NULL AUTO_INCREMENT,
-    codaln INT,
-    coddcp INT,
-    PRIMARY KEY (codrel),
-    FOREIGN KEY (codaln)
-        REFERENCES scndb.taluno (codaln),
-    FOREIGN KEY (coddcp)
-        REFERENCES scndb.tdisciplina (coddcp)
-);
-
-CREATE TABLE scndb.taluno
-(
-    codaln   INT NOT NULL AUTO_INCREMENT,
-    nomealn  VARCHAR(255),
-    usraln   VARCHAR(255),
-    senhaaln VARCHAR(255),
-    codsm    INT,
-    PRIMARY KEY (codaln),
-    FOREIGN KEY (codsm)
-        REFERENCES scndb.tsemestre (codsm)
-);
-
-CREATE TABLE scndb.tgrade
-(
-    codgrd INT AUTO_INCREMENT,
-    numpr  VARCHAR(255),
-    coddcp INT,
-    PRIMARY KEY (codgrd),
-    FOREIGN KEY (coddcp)
-        REFERENCES scndb.tdisciplina (coddcp)
+    codcs  INT          NOT NULL AUTO_INCREMENT,
+    nomecs VARCHAR(255) NOT NULL,
+    drccs  NUMERIC      NOT NULL,
+    codgrd INT          NOT NULL,
+    indatv BOOLEAN      NOT NULL,
+    PRIMARY KEY (codcs)
 );
 
 CREATE TABLE scndb.tsemestre
 (
-    codsm   INT AUTO_INCREMENT,
-    numpr   NUMERIC,
-    mediasm DECIMAL DEFAULT 0,
+    codsm  INT AUTO_INCREMENT,
+    idtsm  VARCHAR(255),
+    datini DATE NOT NULL,
+    datfim DATE NOT NULL,
+    indatv BOOLEAN,
     PRIMARY KEY (codsm)
+);
+
+CREATE TABLE scndb.taluno
+(
+    codaln   INT          NOT NULL AUTO_INCREMENT,
+    nomealn  VARCHAR(255) NOT NULL,
+    usraln   VARCHAR(255) NOT NULL,
+    senhaaln VARCHAR(255) NOT NULL,
+    codsm    INT          NOT NULL,
+    codcs    INT          NOT NULL,
+    codcra   INT,
+    datcad   DATE         NOT NULL,
+    indatv   BOOLEAN      NOT NULL,
+    PRIMARY KEY (codaln),
+    FOREIGN KEY (codcra)
+        REFERENCES scndb.tcra (codcra)
+);
+
+CREATE TABLE scndb.tcra
+(
+    codcra  INT NOT NULL AUTO_INCREMENT,
+    mediasm DECIMAL DEFAULT 0,
+    mediacs DECIMAL DEFAULT 0,
+    PRIMARY KEY (codcra)
+);
+
+CREATE TABLE scndb.tgrade
+(
+    codgrd INT     NOT NULL AUTO_INCREMENT,
+    codsm  INT     NOT NULL,
+    indatv BOOLEAN NOT NULL,
+    PRIMARY KEY (codgrd)
 );
 
 CREATE TABLE scndb.tdisciplina
 (
     coddcp       INT AUTO_INCREMENT,
-    nomedcp      VARCHAR(255),
+    nomedcp      VARCHAR(255) NOT NULL,
     qtdfaltadcp  INTEGER,
+    codgrd       INT          NOT NULL,
     professordcp VARCHAR(150),
     totnotadcp   DECIMAL DEFAULT 0,
     statapr      BOOLEAN DEFAULT FALSE,
     codavl       INT,
     codtrb       INT,
+    indatv       BOOLEAN      NOT NULL,
     PRIMARY KEY (coddcp),
     FOREIGN KEY (codtrb)
         REFERENCES scndb.ttrabalho (codtrb),
@@ -75,6 +76,7 @@ CREATE TABLE scndb.ttrabalho
     notatottrb DECIMAL NOT NULL,
     notafintrb DECIMAL NOT NULL,
     datrb      DATE,
+    codaln     INT     NOT NULL,
     PRIMARY KEY (codtrb)
 );
 
@@ -85,5 +87,6 @@ CREATE TABLE scndb.tavaliacao
     notatotavl DECIMAL NOT NULL,
     notafinavl DECIMAL NOT NULL,
     datavl     DATE,
+    codaln     INT     NOT NULL,
     PRIMARY KEY (codavl)
 );

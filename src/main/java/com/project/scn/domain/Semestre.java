@@ -1,6 +1,7 @@
 package com.project.scn.domain;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,7 +10,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -21,10 +21,14 @@ public class Semestre implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codsm")
     private Long codigo;
-    @Column(name = "numpr")
-    private Integer numeroPeriodo;
-    @Column(name = "mediasm")
-    private Float mediaFinal;
+    @Column(name = "idtsm")
+    private String identificacao;
+    @Column(name = "datini")
+    private LocalDate dataInicio;
+    @Column(name = "datfim")
+    private LocalDate dataFim;
+    @Column(name = "indatv")
+    private Boolean indicadorAtivo;
 
     public Long getCodigo() {
         return codigo;
@@ -34,21 +38,36 @@ public class Semestre implements Serializable {
         this.codigo = codigo;
     }
 
-    public Integer setNumeroPeriodo() {
-        return numeroPeriodo;
+
+    public String getIdentificacao() {
+        return identificacao;
     }
 
-    public void setNumeroPeriodo(Integer numeroPeriodo) {
-        this.numeroPeriodo = numeroPeriodo;
+    public void setIdentificacao(String identificacao) {
+        this.identificacao = identificacao;
     }
 
-    public Float getMediaTotal() {
-        return mediaFinal;
+    public LocalDate getDataInicio() {
+        return dataInicio;
     }
 
-    public void setMediaTotal(Float mediaFinal) {
-        this.mediaFinal = mediaFinal;
+    public void setDataInicio(LocalDate dataInicio) {
+        this.dataInicio = dataInicio;
     }
 
+    public LocalDate getDataFim() {
+        return dataFim;
+    }
 
+    public void setDataFim(LocalDate dataFim) {
+        this.dataFim = dataFim;
+    }
+
+    public Boolean getIndicadorAtivo() {
+        return indicadorAtivo;
+    }
+
+    public void setIndicadorAtivo(Boolean indicadorAtivo) {
+        this.indicadorAtivo = indicadorAtivo;
+    }
 }

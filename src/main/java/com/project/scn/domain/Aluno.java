@@ -1,8 +1,17 @@
 package com.project.scn.domain;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.Date;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "taluno")
@@ -19,9 +28,17 @@ public class Aluno implements Serializable {
     private String usuario;
     @Column(name = "senhaaln")
     private String senha;
-    @ManyToOne
-    @JoinColumn(name = "codsm", referencedColumnName = "codsm")
-    private Semestre semestre;
+    @Column(name = "codsm")
+    private Long codigoSemestre;
+    @Column(name = "codcs")
+    private Long codigoCurso;
+    @OneToOne
+    @JoinColumn(name = "codcra", referencedColumnName = "codcra")
+    private Cra cra;
+    @Column(name = "datcad")
+    private LocalDateTime dataCadastro;
+    @Column(name = "indatv")
+    private Boolean indicadorAtivo;
 
     public Aluno(Aluno aluno) {
     }
@@ -62,12 +79,43 @@ public class Aluno implements Serializable {
         this.senha = senha;
     }
 
-    public Semestre getSemestre() {
-        return semestre;
+    public Long getCodigoSemestre() {
+        return codigoSemestre;
     }
 
-    public void setSemestre(Semestre semestre) {
-        this.semestre = semestre;
+    public void setCodigoSemestre(Long codigoSemestre) {
+        this.codigoSemestre = codigoSemestre;
     }
 
+    public Long getCodigoCurso() {
+        return codigoCurso;
+    }
+
+    public void setCodigoCurso(Long codigoCurso) {
+        this.codigoCurso = codigoCurso;
+    }
+
+    public Cra getCra() {
+        return cra;
+    }
+
+    public void setCra(Cra cra) {
+        this.cra = cra;
+    }
+
+    public LocalDateTime getDataCadastro() {
+        return dataCadastro;
+    }
+
+    public void setDataCadastro(LocalDateTime dataCadastro) {
+        this.dataCadastro = dataCadastro;
+    }
+
+    public Boolean getIndicadorAtivo() {
+        return indicadorAtivo;
+    }
+
+    public void setIndicadorAtivo(Boolean indicadorAtivo) {
+        this.indicadorAtivo = indicadorAtivo;
+    }
 }

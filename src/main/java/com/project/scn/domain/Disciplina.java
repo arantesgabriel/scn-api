@@ -2,16 +2,7 @@ package com.project.scn.domain;
 
 import java.io.Serializable;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-import org.checkerframework.checker.units.qual.C;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "tdisciplina")
@@ -26,6 +17,8 @@ public class Disciplina implements Serializable {
     private String nome;
     @Column(name = "qtdfaltadcp")
     private Integer qtdFalta;
+    @Column(name = "codgrd")
+    private Long codigoGrade;
     @Column(name = "professordcp")
     private String professor;
     @Column(name = "totnotadcp")
@@ -38,6 +31,8 @@ public class Disciplina implements Serializable {
     @ManyToOne
     @JoinColumn(name = "codtrb", referencedColumnName = "codtrb")
     private Trabalho trabalho;
+    @Column(name = "indatv")
+    private Boolean indicadorAtivo;
 
     public Long getCodigo() {
         return codigo;
@@ -61,6 +56,14 @@ public class Disciplina implements Serializable {
 
     public void setQtdFalta(Integer qtdFalta) {
         this.qtdFalta = qtdFalta;
+    }
+
+    public Long getCodigoGrade() {
+        return codigoGrade;
+    }
+
+    public void setCodigoGrade(Long codigoGrade) {
+        this.codigoGrade = codigoGrade;
     }
 
     public String getProfessor() {
@@ -101,6 +104,14 @@ public class Disciplina implements Serializable {
 
     public void setTrabalho(Trabalho trabalho) {
         this.trabalho = trabalho;
+    }
+
+    public Boolean getIndicadorAtivo() {
+        return indicadorAtivo;
+    }
+
+    public void setIndicadorAtivo(Boolean indicadorAtivo) {
+        this.indicadorAtivo = indicadorAtivo;
     }
 
 }

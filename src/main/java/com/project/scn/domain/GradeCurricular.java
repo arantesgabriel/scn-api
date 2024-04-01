@@ -1,10 +1,10 @@
 package com.project.scn.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.persistence.*;
-
 import java.io.Serializable;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "tgrade")
@@ -15,14 +15,10 @@ public class GradeCurricular implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codgrd")
     private Long codigo;
-    @Column(name = "numpr")
-    private Integer numeroPeriodo;
-    @OneToOne
-    @JoinColumn(name = "codcs", referencedColumnName = "codcs")
-    private Curso curso;
-    @ManyToOne
-    @JoinColumn(name = "coddcp", referencedColumnName = "coddcp")
-    private Disciplina disciplina;
+    @Column(name = "codsm")
+    private Integer codigoSemestre;
+    @Column(name = "indatv")
+    private Boolean indicadorAtivo;
 
     public Long getCodigo() {
         return codigo;
@@ -32,27 +28,19 @@ public class GradeCurricular implements Serializable {
         this.codigo = codigo;
     }
 
-    public Integer getNumeroPeriodo() {
-        return numeroPeriodo;
+    public Integer getCodigoSemestre() {
+        return codigoSemestre;
     }
 
-    public void setNumeroPeriodo(Integer numeroPeriodo) {
-        this.numeroPeriodo = numeroPeriodo;
+    public void setCodigoSemestre(Integer codigoSemestre) {
+        this.codigoSemestre = codigoSemestre;
     }
 
-    public Curso getCurso() {
-        return curso;
+    public Boolean getIndicadorAtivo() {
+        return indicadorAtivo;
     }
 
-    public void setCurso(Curso curso) {
-        this.curso = curso;
-    }
-
-    public Disciplina getDisciplina() {
-        return disciplina;
-    }
-
-    public void setDisciplina(Disciplina disciplina) {
-        this.disciplina = disciplina;
+    public void setIndicadorAtivo(Boolean indicadorAtivo) {
+        this.indicadorAtivo = indicadorAtivo;
     }
 }

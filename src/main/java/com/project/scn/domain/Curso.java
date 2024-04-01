@@ -2,6 +2,7 @@ package com.project.scn.domain;
 
 import java.io.Serializable;
 
+import com.project.scn.DTO.GradeDTO;
 import jakarta.persistence.*;
 
 @Entity
@@ -15,11 +16,12 @@ public class Curso implements Serializable {
     private Long codigo;
     @Column(name = "nomecs")
     private String nome;
-    @Column(name = "durccs")
+    @Column(name = "drccs")
     private Integer duracao;
-    @ManyToOne
-    @JoinColumn(name = "codaln", referencedColumnName = "codaln")
-    private Aluno aluno;
+    @Column(name = "codgrd")
+    private Long codigoGrade;
+    @Column(name = "indatv")
+    private Boolean indicadorAtivo;
 
     public Long getCodigo() {
         return codigo;
@@ -45,11 +47,19 @@ public class Curso implements Serializable {
         this.duracao = duracao;
     }
 
-    public Aluno getAluno() {
-        return aluno;
+    public Long getCodigoGrade() {
+        return codigoGrade;
     }
 
-    public void setAluno(Aluno aluno) {
-        this.aluno = aluno;
+    public void setCodigoGrade(Long codigoGrade) {
+        this.codigoGrade = codigoGrade;
+    }
+
+    public Boolean getIndicadorAtivo() {
+        return indicadorAtivo;
+    }
+
+    public void setIndicadorAtivo(Boolean indicadorAtivo) {
+        this.indicadorAtivo = indicadorAtivo;
     }
 }

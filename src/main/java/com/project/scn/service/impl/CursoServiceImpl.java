@@ -1,7 +1,9 @@
 package com.project.scn.service.impl;
 
+import java.util.List;
 import java.util.Optional;
 
+import com.project.scn.DTO.GradeDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,22 +16,34 @@ import com.project.scn.service.CursoService;
 @Service
 public class CursoServiceImpl implements CursoService {
 
-	@Autowired
-	CursoMapper cursoMapper;
-	@Autowired
-	CursoRepository cursoRepository;
+    @Autowired
+    CursoMapper cursoMapper;
+    @Autowired
+    CursoRepository cursoRepository;
 
-	@Override
-	public String CadastrarCurso(CursoDTO cursoDTO) {
-		Curso curso = new Curso();
-		cursoDTO.setNome(cursoDTO.getNome().toUpperCase());
-		cursoMapper.DTOParaCurso(cursoDTO, curso);
-		cursoRepository.save(curso);
-		return "Curso cadastrado com sucesso";
-	}
+    public List<Curso> listarCursos() {
+        return cursoRepository.findAll();
+    }
 
-	@Override
-	public Optional<Curso> BuscarCurso(Long codigo) {
-		return cursoRepository.BucarCurso(codigo);
-	}
+    public String cadastrarCurso(Curso curso) throws Exception {
+        if (curso.getNome().isEmpty() || curso.getNome() == null) {
+            throw new Exception("Preencha o campo 'nome' corretamente.");
+        }
+        if (curso.getCodigoGrade() == null) {
+            throw new Exception("Preencha o campo 'codigoGrade' corretamente.");
+        } else {
+            Curso novoCurso = new Curso();
+            novoCurso.setNome(curso.getNome().toUpperCase());
+            novoCurso.setDuracao(curso.getDuracao());
+            novoCurso.setCodigoGrade(curso.getCodigoGrade());
+            novoCurso.setIndicadorAtivo(true);
+            cursoRepository.save(novoCurso);
+            return "Curso cadastrado com sucesso!";
+        }
+    }
+
+    @Override
+    public Optional<Curso> buscarCursoPorCodigo(Long codigo) {
+        return cursoRepository.buscarCursoPorCodigo(codigo);
+    }
 }
